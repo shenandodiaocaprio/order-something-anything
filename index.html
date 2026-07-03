@@ -115,7 +115,7 @@
     <div class="big">Home 🏠 · Blk 4D, Banana Lane ▾</div>
   </div>
   <div class="hero">
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Tian_Tian_Hainanese_Chicken_Rice,_Singapore.JPG?width=960" alt="Chicken rice">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hainanese_chicken_rice_(in_Macau).jpg?width=960" alt="Chicken rice">
   </div>
   <div class="card">
     <h1>Uncle Seng's Hainanese Chicken Rice</h1>
@@ -125,7 +125,7 @@
   <div class="section-title">Most Ordered</div>
   <div class="dish">
     <div class="dish-img">
-      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Tian_Tian_Hainanese_Chicken_Rice,_Singapore.JPG?width=200" alt="Chicken rice">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hainanese_chicken_rice_(in_Macau).jpg?width=200" alt="Chicken rice">
     </div>
     <div class="dish-info">
       <h2>Signature Chicken Rice (Steamed)</h2>
@@ -134,7 +134,7 @@
       <div class="sold">1.2k sold this week</div>
     </div>
   </div>
-  <p class="credit">Photo: Shoestring, Wikimedia Commons (CC BY-SA 1.0)</p>
+  <p class="credit">Photo: Wikimedia Commons (see file page for author &amp; license)</p>
   <div class="bottombar">
     <button class="bigbtn" onclick="go('checkout')">Order now · S$5.79</button>
   </div>
@@ -322,7 +322,7 @@
     if (!("Notification" in window) || Notification.permission !== "granted") return;
     const n = new Notification("KopeFood · Delivered! 🛵", {
       body: "Your order has arrived. Tap to open 📦",
-      icon: "https://commons.wikimedia.org/wiki/Special:FilePath/Tian_Tian_Hainanese_Chicken_Rice,_Singapore.JPG?width=200"
+      icon: "https://commons.wikimedia.org/wiki/Special:FilePath/Hainanese_chicken_rice_(in_Macau).jpg?width=200"
     });
     n.onclick = () => { window.focus(); go('reveal'); n.close(); };
   }
