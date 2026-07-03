@@ -1,26 +1,337 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Order Something</title>
-  <style>
-    body {
-      font-family: system-ui, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      background: #fff8e1;
-    }
-    h1 { font-size: 3rem; margin: 0; }
-    p { color: #666; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KopeFood — Food Delivery</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, system-ui, "Segoe UI", Roboto, sans-serif;
+    background: #f5f5f5;
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+  }
+  .screen { display: none; padding-bottom: 90px; }
+  .screen.active { display: block; }
+  .topbar { background: #00b14f; color: #fff; padding: 14px 16px 12px; }
+  .topbar .small { font-size: 12px; opacity: .85; }
+  .topbar .big { font-weight: 700; font-size: 15px; }
+  .hero { height: 150px; overflow: hidden; }
+  .hero img { width: 100%; height: 100%; object-fit: cover; }
+  .card { background: #fff; padding: 16px; border-bottom: 8px solid #f5f5f5; }
+  .card h1 { font-size: 20px; }
+  .meta { color: #555; font-size: 13px; margin-top: 6px; }
+  .meta b { color: #00a344; }
+  .badge {
+    display: inline-block; background: #e8f8ef; color: #00a344;
+    font-size: 11px; font-weight: 700; padding: 3px 8px;
+    border-radius: 10px; margin-top: 8px;
+  }
+  .section-title {
+    padding: 14px 16px 6px; font-size: 13px; font-weight: 700;
+    color: #888; text-transform: uppercase; letter-spacing: .5px;
+  }
+  .dish { background: #fff; padding: 14px 16px; display: flex; gap: 12px; align-items: center; }
+  .dish-img { width: 84px; height: 84px; border-radius: 10px; overflow: hidden; flex-shrink: 0; }
+  .dish-img img { width: 100%; height: 100%; object-fit: cover; }
+  .dish-info { flex: 1; }
+  .dish-info h2 { font-size: 15px; }
+  .dish-info p { font-size: 12px; color: #777; margin-top: 4px; line-height: 1.4; }
+  .price { font-weight: 700; font-size: 15px; margin-top: 6px; }
+  .sold { font-size: 11px; color: #aaa; margin-top: 2px; }
+  .bottombar {
+    position: fixed; bottom: 0; left: 0; right: 0; max-width: 480px;
+    margin: 0 auto; padding: 12px 16px; background: #fff;
+    box-shadow: 0 -2px 12px rgba(0,0,0,.08);
+  }
+  .bigbtn {
+    width: 100%; background: #00b14f; color: #fff; border: none;
+    border-radius: 10px; padding: 15px; font-size: 16px;
+    font-weight: 700; cursor: pointer;
+  }
+  .bigbtn:active { background: #009943; }
+  .row { display: flex; justify-content: space-between; font-size: 14px; padding: 6px 0; }
+  .row.total { font-weight: 700; font-size: 16px; border-top: 1px solid #eee; margin-top: 6px; padding-top: 10px; }
+  .payopt {
+    display: flex; align-items: center; gap: 10px; padding: 12px;
+    border: 2px solid #eee; border-radius: 10px; margin-top: 10px;
+    font-size: 14px; cursor: pointer;
+  }
+  .payopt.selected { border-color: #00b14f; background: #f2fbf6; }
+  .paycard {
+    background: linear-gradient(135deg, #1a1a2e, #16213e); color: #fff;
+    border-radius: 12px; padding: 16px; margin-top: 12px;
+    font-family: "Courier New", monospace; font-size: 14px;
+  }
+  .paycard .num { letter-spacing: 2px; font-size: 16px; margin: 10px 0; }
+  .paycard .rowc { display: flex; justify-content: space-between; font-size: 11px; opacity: .8; }
+  .promo { display: flex; gap: 8px; margin-top: 10px; }
+  .promo input {
+    flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px;
+    font-size: 14px; text-transform: uppercase;
+  }
+  .promo button {
+    padding: 10px 16px; border: none; border-radius: 8px;
+    background: #00b14f; color: #fff; font-weight: 700; cursor: pointer;
+  }
+  .promomsg { font-size: 12px; color: #00a344; margin-top: 6px; font-weight: 600; display: none; }
+  .back { background: none; border: none; color: #fff; font-size: 15px; cursor: pointer; padding: 0; margin-bottom: 6px; }
+  .credit { text-align: center; font-size: 10px; color: #bbb; padding: 10px; }
+
+  /* ===== courier screen ===== */
+  .eta-card { text-align: center; padding: 20px 16px; }
+  .eta-card .eta-label { font-size: 13px; color: #888; }
+  .eta-card .eta-time { font-size: 40px; font-weight: 800; color: #00a344; font-variant-numeric: tabular-nums; }
+  .status-line { font-size: 14px; color: #555; margin-top: 8px; min-height: 20px; }
+  .mapwrap { background: #fff; border-bottom: 8px solid #f5f5f5; }
+
+  /* ===== reveal screen ===== */
+  .reveal {
+    min-height: 80vh; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    background: #fff8e1; padding: 24px;
+  }
+  .box { font-size: 90px; cursor: pointer; transition: transform .15s; }
+  .box:active { transform: scale(.9); }
+  .tap-hint { font-size: 13px; color: #a99; margin-top: 12px; }
+  .banana { font-size: 110px; animation: pop .5s ease; }
+  .punchline { font-size: 26px; font-weight: 800; margin-top: 18px; color: #333; }
+  .hidden { display: none; }
+  @keyframes pop {
+    0% { transform: scale(0) rotate(-30deg); }
+    70% { transform: scale(1.2) rotate(8deg); }
+    100% { transform: scale(1) rotate(0); }
+  }
+</style>
 </head>
 <body>
-  <h1>🍌</h1>
-  <p>Go eat a banana</p>
+
+<!-- ============ SCREEN 1: MENU ============ -->
+<div class="screen active" id="menu">
+  <div class="topbar">
+    <div class="small">Deliver to</div>
+    <div class="big">Home 🏠 · Blk 4D, Banana Lane ▾</div>
+  </div>
+  <div class="hero">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Tian_Tian_Hainanese_Chicken_Rice,_Singapore.JPG?width=960" alt="Chicken rice">
+  </div>
+  <div class="card">
+    <h1>Uncle Seng's Hainanese Chicken Rice</h1>
+    <div class="meta">⭐ 4.9 (2,341 ratings) · <b>20–30 min</b> · $0.99 delivery</div>
+    <div class="badge">✓ Preferred Merchant</div>
+  </div>
+  <div class="section-title">Most Ordered</div>
+  <div class="dish">
+    <div class="dish-img">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Tian_Tian_Hainanese_Chicken_Rice,_Singapore.JPG?width=200" alt="Chicken rice">
+    </div>
+    <div class="dish-info">
+      <h2>Signature Chicken Rice (Steamed)</h2>
+      <p>Fragrant rice, tender poached chicken, chilli, ginger, dark soy. Comes with soup of the day.</p>
+      <div class="price">S$4.80</div>
+      <div class="sold">1.2k sold this week</div>
+    </div>
+  </div>
+  <p class="credit">Photo: Shoestring, Wikimedia Commons (CC BY-SA 1.0)</p>
+  <div class="bottombar">
+    <button class="bigbtn" onclick="go('checkout')">Order now · S$5.79</button>
+  </div>
+</div>
+
+<!-- ============ SCREEN 2: CHECKOUT ============ -->
+<div class="screen" id="checkout">
+  <div class="topbar">
+    <button class="back" onclick="go('menu')">‹ Back</button>
+    <div class="big">Checkout</div>
+  </div>
+  <div class="card">
+    <div class="section-title" style="padding:0 0 8px;">Order Summary</div>
+    <div class="row"><span>1× Signature Chicken Rice</span><span>S$4.80</span></div>
+    <div class="row"><span>Delivery fee</span><span>S$0.99</span></div>
+    <div class="row" id="discountRow" style="display:none;color:#00a344;">
+      <span>Promo discount</span><span>−S$1.00</span>
+    </div>
+    <div class="row total"><span>Total</span><span id="totalAmt">S$5.79</span></div>
+    <div class="promo">
+      <input type="text" id="promoInput" placeholder="Promo code">
+      <button onclick="applyPromo()">Apply</button>
+    </div>
+    <div class="promomsg" id="promoMsg"></div>
+  </div>
+  <div class="card">
+    <div class="section-title" style="padding:0 0 4px;">Payment Method</div>
+    <div class="payopt selected" onclick="pickPay(this)">💚 <b>KopePay</b>&nbsp;· Balance: S$88.88</div>
+    <div class="payopt" onclick="pickPay(this)">💳 <b>Card</b>&nbsp;· Visa ···· 1111</div>
+    <div class="paycard">
+      <div>KOPEBANK PLATINUM</div>
+      <div class="num">4111 1111 1111 1111</div>
+      <div class="rowc"><span>HUNGRY PERSON</span><span>EXP 12/34 · CVV 000</span></div>
+    </div>
+    <div class="payopt" onclick="pickPay(this)">💵 <b>Cash on delivery</b>&nbsp;· exact change only</div>
+  </div>
+  <div class="bottombar">
+    <button class="bigbtn" onclick="startDelivery()">Place order</button>
+  </div>
+</div>
+
+<!-- ============ SCREEN 3: COURIER ============ -->
+<div class="screen" id="courier">
+  <div class="topbar">
+    <div class="small">Order #8888 · Uncle Seng's</div>
+    <div class="big">Your rider is on the way</div>
+  </div>
+
+  <div class="card eta-card">
+    <div class="eta-label">Arriving in</div>
+    <div class="eta-time" id="etaTime">--:--</div>
+    <div class="status-line" id="statusLine"></div>
+  </div>
+
+  <div class="mapwrap">
+    <svg viewBox="0 0 480 340" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <rect width="480" height="340" fill="#e8f4e0"/>
+      <path d="M 0 250 Q 120 230 200 260 T 480 240 L 480 290 Q 300 310 160 290 T 0 300 Z" fill="#bfe3f2"/>
+      <rect x="30" y="40" width="70" height="50" rx="6" fill="#d9e8d0" stroke="#b5cfa6" stroke-width="2"/>
+      <rect x="130" y="120" width="60" height="60" rx="6" fill="#d9e8d0" stroke="#b5cfa6" stroke-width="2"/>
+      <rect x="300" y="50" width="80" height="55" rx="6" fill="#d9e8d0" stroke="#b5cfa6" stroke-width="2"/>
+      <rect x="350" y="170" width="60" height="50" rx="6" fill="#d9e8d0" stroke="#b5cfa6" stroke-width="2"/>
+      <circle cx="240" cy="60" r="12" fill="#8fbf7f"/>
+      <circle cx="265" cy="75" r="9" fill="#8fbf7f"/>
+      <circle cx="70" cy="180" r="11" fill="#8fbf7f"/>
+      <path id="route"
+        d="M 45 105 C 90 160, 120 200, 190 195 S 290 130, 330 140 S 420 220, 430 265"
+        fill="none" stroke="#00b14f" stroke-width="4" stroke-dasharray="8 7" stroke-linecap="round"/>
+      <text x="45" y="98" font-size="26" text-anchor="middle">🍗</text>
+      <text x="45" y="128" font-size="10" text-anchor="middle" fill="#555" font-weight="bold">Uncle Seng's</text>
+      <text x="430" y="262" font-size="26" text-anchor="middle">🏠</text>
+      <text x="430" y="290" font-size="10" text-anchor="middle" fill="#555" font-weight="bold">Blk 4D Banana Lane</text>
+      <text id="scooter" font-size="28" text-anchor="middle" dominant-baseline="middle">🛵</text>
+    </svg>
+  </div>
+
+  <div class="card">
+    <div class="row"><span>Rider</span><span id="riderInfo"></span></div>
+    <div class="row"><span>Vehicle</span><span id="vehicleInfo"></span></div>
+  </div>
+</div>
+
+<!-- ============ SCREEN 4: REVEAL ============ -->
+<div class="screen" id="reveal">
+  <div class="reveal">
+    <div id="boxStage">
+      <div class="box" onclick="openBox()">📦</div>
+      <div class="tap-hint">Your order has arrived. Tap to open!</div>
+    </div>
+    <div id="bananaStage" class="hidden">
+      <div class="banana">🍌</div>
+      <div class="punchline">Go eat a banana.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function go(id) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+
+  function pickPay(el) {
+    document.querySelectorAll('.payopt').forEach(p => p.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function applyPromo() {
+    const code = document.getElementById('promoInput').value.trim();
+    if (!code) return;
+    document.getElementById('discountRow').style.display = 'flex';
+    document.getElementById('totalAmt').textContent = 'S$4.79';
+    const msg = document.getElementById('promoMsg');
+    msg.textContent = '✓ Code "' + code.toUpperCase() + '" applied! (All codes work here. All of them.)';
+    msg.style.display = 'block';
+  }
+
+  // ===== the delivery =====
+  const riders = [
+    { name: "Ram Ramsimilinga", trips: "9,812",  plate: "SBN 4444 A" },
+    { name: "Ahmad Mohammad",   trips: "12,041", plate: "SFD 8888 K" },
+    { name: "Tan Ah Kow",       trips: "23,456", plate: "SKV 1111 B" }
+  ];
+  let TRIP_SECONDS, statuses;
+
+  function setupDelivery() {
+    const r = riders[Math.floor(Math.random() * riders.length)];
+    TRIP_SECONDS = 20 + Math.floor(Math.random() * 11); // random 20–30 real seconds
+    const first = r.name.split(" ")[0];
+    statuses = [
+      [0,                   "Rider " + first + " has kope'd your order 🛵"],
+      [TRIP_SECONDS * 0.25, "Crossing the canal…"],
+      [TRIP_SECONDS * 0.5,  "Overtaking a bus (safely)…"],
+      [TRIP_SECONDS * 0.72, "Almost at Banana Lane…"],
+      [TRIP_SECONDS * 0.92, first + " is at your void deck!"]
+    ];
+    document.getElementById('riderInfo').innerHTML =
+      "<b>" + r.name + "</b> ⭐ 5.0 · " + r.trips + " trips";
+    document.getElementById('vehicleInfo').textContent = "Scooter · " + r.plate;
+  }
+
+  function startDelivery() {
+    if ("Notification" in window && Notification.permission === "default") {
+      Notification.requestPermission();
+    }
+    setupDelivery();
+    go('courier');
+
+    const route = document.getElementById('route');
+    const scooter = document.getElementById('scooter');
+    const eta = document.getElementById('etaTime');
+    const statusLine = document.getElementById('statusLine');
+    const total = route.getTotalLength();
+    const t0 = performance.now();
+
+    function tick(now) {
+      const elapsed = (now - t0) / 1000;
+      const frac = Math.min(elapsed / TRIP_SECONDS, 1);
+
+      const pt = route.getPointAtLength(frac * total);
+      scooter.setAttribute('x', pt.x);
+      scooter.setAttribute('y', pt.y - 6);
+
+      const remain = Math.max(TRIP_SECONDS - Math.floor(elapsed), 0);
+      eta.textContent = '0:' + String(remain).padStart(2, '0');
+
+      for (const [at, text] of statuses) {
+        if (elapsed >= at) statusLine.textContent = text;
+      }
+
+      if (frac < 1) {
+        requestAnimationFrame(tick);
+      } else {
+        eta.textContent = '0:00';
+        statusLine.textContent = 'Delivered! 🎉';
+        notifyArrival();
+        setTimeout(() => go('reveal'), 900);
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+
+  function notifyArrival() {
+    if (!("Notification" in window) || Notification.permission !== "granted") return;
+    const n = new Notification("KopeFood · Delivered! 🛵", {
+      body: "Your order has arrived. Tap to open 📦",
+      icon: "https://commons.wikimedia.org/wiki/Special:FilePath/Tian_Tian_Hainanese_Chicken_Rice,_Singapore.JPG?width=200"
+    });
+    n.onclick = () => { window.focus(); go('reveal'); n.close(); };
+  }
+
+  function openBox() {
+    document.getElementById('boxStage').classList.add('hidden');
+    document.getElementById('bananaStage').classList.remove('hidden');
+  }
+</script>
+
 </body>
 </html>
