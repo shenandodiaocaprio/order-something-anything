@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KopeFood — Food Delivery</title>
+<title>KopeFood — order the food, skip the bill</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
@@ -13,11 +13,26 @@
     margin: 0 auto;
     min-height: 100vh;
   }
-  .screen { display: none; padding-bottom: 90px; }
+  .screen { display: none; padding-bottom: 30px; }
   .screen.active { display: block; }
+  .honesty {
+    background: #1a1a2e; color: #ffd166; text-align: center;
+    font-size: 12px; font-weight: 700; padding: 7px 10px;
+  }
   .topbar { background: #00b14f; color: #fff; padding: 14px 16px 12px; }
   .topbar .small { font-size: 12px; opacity: .85; }
   .topbar .big { font-weight: 700; font-size: 15px; }
+  .herotext { background: #fff; padding: 22px 16px 18px; border-bottom: 8px solid #f5f5f5; }
+  .herotext h1 { font-size: 26px; line-height: 1.2; }
+  .herotext p { font-size: 14px; color: #666; margin-top: 8px; line-height: 1.5; }
+  .counter { font-size: 12px; color: #00a344; font-weight: 700; margin-top: 10px; }
+  .badges { display: flex; gap: 8px; padding: 12px 16px; background: #fff; border-bottom: 8px solid #f5f5f5; }
+  .bdg {
+    flex: 1; background: #f2fbf6; border: 1px solid #d4f0e0; border-radius: 10px;
+    padding: 10px 8px; text-align: center;
+  }
+  .bdg b { display: block; font-size: 13px; color: #00a344; }
+  .bdg span { font-size: 10px; color: #888; line-height: 1.3; display: block; margin-top: 3px; }
   .hero { height: 150px; overflow: hidden; }
   .hero img { width: 100%; height: 100%; object-fit: cover; }
   .card { background: #fff; padding: 16px; border-bottom: 8px solid #f5f5f5; }
@@ -33,7 +48,25 @@
     padding: 14px 16px 6px; font-size: 13px; font-weight: 700;
     color: #888; text-transform: uppercase; letter-spacing: .5px;
   }
-  .dish { background: #fff; padding: 14px 16px; display: flex; gap: 12px; align-items: center; }
+  .shop {
+    background: #fff; padding: 14px 16px; display: flex; gap: 12px;
+    align-items: center; border-bottom: 1px solid #f0f0f0; cursor: pointer;
+  }
+  .shop-icon {
+    width: 54px; height: 54px; border-radius: 12px; background: #e8f8ef;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; flex-shrink: 0;
+  }
+  .shop-info { flex: 1; }
+  .shop-info h2 { font-size: 15px; }
+  .shop-info p { font-size: 12px; color: #777; margin-top: 3px; }
+  .shop.closed { cursor: default; }
+  .shop.closed .shop-icon { background: #f0f0f0; filter: grayscale(1); opacity: .6; }
+  .shop.closed h2 { color: #999; }
+  .closed-tag { font-size: 11px; font-weight: 700; color: #c0392b; margin-top: 3px; }
+  .open-tag { font-size: 11px; font-weight: 700; color: #00a344; margin-top: 3px; }
+  .dish { background: #fff; padding: 14px 16px; display: flex; gap: 12px; align-items: center; cursor: pointer; }
+  .dish:active { background: #f8f8f8; }
   .dish-img { width: 84px; height: 84px; border-radius: 10px; overflow: hidden; flex-shrink: 0; }
   .dish-img img { width: 100%; height: 100%; object-fit: cover; }
   .dish-info { flex: 1; }
@@ -42,8 +75,7 @@
   .price { font-weight: 700; font-size: 15px; margin-top: 6px; }
   .sold { font-size: 11px; color: #aaa; margin-top: 2px; }
   .bottombar {
-    position: fixed; bottom: 0; left: 0; right: 0; max-width: 480px;
-    margin: 0 auto; padding: 12px 16px; background: #fff;
+    position: sticky; bottom: 0; padding: 12px 16px; background: #fff;
     box-shadow: 0 -2px 12px rgba(0,0,0,.08);
   }
   .bigbtn {
@@ -67,6 +99,11 @@
   }
   .paycard .num { letter-spacing: 2px; font-size: 16px; margin: 10px 0; }
   .paycard .rowc { display: flex; justify-content: space-between; font-size: 11px; opacity: .8; }
+  .disclaimer {
+    background: #fff8e1; border: 2px dashed #ffd166; border-radius: 10px;
+    padding: 12px; margin-top: 14px; font-size: 13px; line-height: 1.5; color: #7a6520;
+  }
+  .disclaimer b { color: #5c4d15; }
   .promo { display: flex; gap: 8px; margin-top: 10px; }
   .promo input {
     flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 8px;
@@ -78,16 +115,24 @@
   }
   .promomsg { font-size: 12px; color: #00a344; margin-top: 6px; font-weight: 600; display: none; }
   .back { background: none; border: none; color: #fff; font-size: 15px; cursor: pointer; padding: 0; margin-bottom: 6px; }
-  .credit { text-align: center; font-size: 10px; color: #bbb; padding: 10px; }
+  .credit { text-align: center; font-size: 10px; color: #bbb; padding: 10px; line-height: 1.5; }
 
-  /* ===== courier screen ===== */
-  .eta-card { text-align: center; padding: 20px 16px; }
+  /* order stage tracker */
+  .steps { display: flex; background: #fff; padding: 14px 10px 10px; }
+  .step { flex: 1; text-align: center; opacity: .35; transition: opacity .3s; }
+  .step.on { opacity: 1; }
+  .step .ic { font-size: 22px; }
+  .step .lb { font-size: 9px; font-weight: 700; color: #555; margin-top: 3px; text-transform: uppercase; letter-spacing: .3px; }
+  .steps-line { height: 3px; background: #eee; margin: 0 16px; border-radius: 2px; overflow: hidden; }
+  .steps-fill { height: 100%; width: 0%; background: #00b14f; transition: width .5s; }
+
+  .eta-card { text-align: center; padding: 18px 16px; background: #fff; border-bottom: 8px solid #f5f5f5; }
   .eta-card .eta-label { font-size: 13px; color: #888; }
   .eta-card .eta-time { font-size: 40px; font-weight: 800; color: #00a344; font-variant-numeric: tabular-nums; }
   .status-line { font-size: 14px; color: #555; margin-top: 8px; min-height: 20px; }
-  .mapwrap { background: #fff; border-bottom: 8px solid #f5f5f5; }
+  .stage-emoji { font-size: 44px; margin-top: 4px; display: none; }
+  .mapwrap { background: #fff; border-bottom: 8px solid #f5f5f5; display: none; }
 
-  /* ===== reveal screen ===== */
   .reveal {
     min-height: 80vh; display: flex; flex-direction: column;
     align-items: center; justify-content: center; text-align: center;
@@ -108,11 +153,85 @@
 </head>
 <body>
 
-<!-- ============ SCREEN 1: MENU ============ -->
-<div class="screen active" id="menu">
+<!-- ============ SCREEN 0: SHOPS / LANDING ============ -->
+<div class="screen active" id="shops">
+  <div class="honesty">🧠 a dopamine site · order &amp; never pay · nothing here is real</div>
   <div class="topbar">
     <div class="small">Deliver to</div>
     <div class="big">Home 🏠 · Blk 4D, Banana Lane ▾</div>
+  </div>
+
+  <div class="herotext">
+    <h1>Order the food.<br>Skip the bill.</h1>
+    <p>Browse the stalls, fill your order, "pay" with a fake card, and track your rider live. The food never comes — but the shiok does. ✨</p>
+    <div class="counter" id="orderCounter"></div>
+  </div>
+
+  <div class="badges">
+    <div class="bdg"><b>50% OFF</b><span>every order — forever</span></div>
+    <div class="bdg"><b>FREE delivery</b><span>no minimum · no catch</span></div>
+    <div class="bdg"><b>0-min wait</b><span>…or never. who's counting?</span></div>
+  </div>
+
+  <div class="section-title">Restaurants near you</div>
+
+  <div class="shop" onclick="go('menu')">
+    <div class="shop-icon">🍗</div>
+    <div class="shop-info">
+      <h2>Uncle Seng's Hainanese Chicken Rice</h2>
+      <p>⭐ 4.9 (2,341) · 20–30 min · $0.99 delivery</p>
+      <div class="open-tag">● Open now</div>
+    </div>
+    <div>›</div>
+  </div>
+
+  <div class="shop closed">
+    <div class="shop-icon">🍜</div>
+    <div class="shop-info">
+      <h2>Auntie Mei's Laksa Palace</h2>
+      <p>⭐ 4.8 (1,872) · 25–35 min</p>
+      <div class="closed-tag">● Closed · Aunty resting</div>
+    </div>
+  </div>
+
+  <div class="shop closed">
+    <div class="shop-icon">🍢</div>
+    <div class="shop-info">
+      <h2>Satay Bros Since 1974</h2>
+      <p>⭐ 4.9 (5,203) · 30–40 min</p>
+      <div class="closed-tag">● Closed · Sold out since 2019</div>
+    </div>
+  </div>
+
+  <div class="shop closed">
+    <div class="shop-icon">🥞</div>
+    <div class="shop-info">
+      <h2>24hr Prata Corner</h2>
+      <p>⭐ 4.7 (988) · 15–25 min</p>
+      <div class="closed-tag">● Closed · "24hr" is a mindset</div>
+    </div>
+  </div>
+
+  <div class="shop closed">
+    <div class="shop-icon">☕</div>
+    <div class="shop-info">
+      <h2>Kopi &amp; Toast Traditional</h2>
+      <p>⭐ 4.6 (3,410) · 10–20 min</p>
+      <div class="closed-tag">● Closed · Uncle went JB</div>
+    </div>
+  </div>
+
+  <p class="credit">
+    A dopamine site for fun — no real food, no real payments, no data collected, no cookies, nothing.
+    Photos via Wikimedia Commons (see file pages for authors &amp; licenses). Prices are imaginary.
+  </p>
+</div>
+
+<!-- ============ SCREEN 1: MENU ============ -->
+<div class="screen" id="menu">
+  <div class="topbar">
+    <button class="back" onclick="go('shops')">‹ Back</button>
+    <div class="big">Uncle Seng's Hainanese Chicken Rice</div>
   </div>
   <div class="hero">
     <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hainanese_chicken_rice_(in_Macau).jpg?width=960" alt="Chicken rice">
@@ -122,22 +241,8 @@
     <div class="meta">⭐ 4.9 (2,341 ratings) · <b>20–30 min</b> · $0.99 delivery</div>
     <div class="badge">✓ Preferred Merchant</div>
   </div>
-  <div class="section-title">Most Ordered</div>
-  <div class="dish">
-    <div class="dish-img">
-      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hainanese_chicken_rice_(in_Macau).jpg?width=200" alt="Chicken rice">
-    </div>
-    <div class="dish-info">
-      <h2>Signature Chicken Rice (Steamed)</h2>
-      <p>Fragrant rice, tender poached chicken, chilli, ginger, dark soy. Comes with soup of the day.</p>
-      <div class="price">S$4.80</div>
-      <div class="sold">1.2k sold this week</div>
-    </div>
-  </div>
-  <p class="credit">Photo: Wikimedia Commons (see file page for author &amp; license)</p>
-  <div class="bottombar">
-    <button class="bigbtn" onclick="go('checkout')">Order now · S$5.79</button>
-  </div>
+  <div class="section-title">Menu · tap a dish to order</div>
+  <div id="dishList"></div>
 </div>
 
 <!-- ============ SCREEN 2: CHECKOUT ============ -->
@@ -148,12 +253,12 @@
   </div>
   <div class="card">
     <div class="section-title" style="padding:0 0 8px;">Order Summary</div>
-    <div class="row"><span>1× Signature Chicken Rice</span><span>S$4.80</span></div>
+    <div class="row"><span id="orderLine">1× dish</span><span id="orderPrice"></span></div>
     <div class="row"><span>Delivery fee</span><span>S$0.99</span></div>
     <div class="row" id="discountRow" style="display:none;color:#00a344;">
       <span>Promo discount</span><span>−S$1.00</span>
     </div>
-    <div class="row total"><span>Total</span><span id="totalAmt">S$5.79</span></div>
+    <div class="row total"><span>Total</span><span id="totalAmt"></span></div>
     <div class="promo">
       <input type="text" id="promoInput" placeholder="Promo code">
       <button onclick="applyPromo()">Apply</button>
@@ -170,43 +275,96 @@
       <div class="rowc"><span>HUNGRY PERSON</span><span>EXP 12/34 · CVV 000</span></div>
     </div>
     <div class="payopt" onclick="pickPay(this)">💵 <b>Cash on delivery</b>&nbsp;· exact change only</div>
+
+    <div class="disclaimer">
+      🧘 <b>Relax — you will never actually pay.</b><br>
+      The card above is fake. KopePay is fake. The total is imaginary. Nothing is charged,
+      no details are collected, and no real money is involved — ever. Tap away freely.
+    </div>
   </div>
   <div class="bottombar">
     <button class="bigbtn" onclick="startDelivery()">Place order</button>
   </div>
 </div>
 
-<!-- ============ SCREEN 3: COURIER ============ -->
+<!-- ============ SCREEN 3: TRACKING ============ -->
 <div class="screen" id="courier">
   <div class="topbar">
-    <div class="small">Order #8888 · Uncle Seng's</div>
-    <div class="big">Your rider is on the way</div>
+    <div class="small" id="courierSub">Order #8888 · Uncle Seng's</div>
+    <div class="big" id="courierTitle">Confirming your order…</div>
   </div>
 
-  <div class="card eta-card">
-    <div class="eta-label">Arriving in</div>
-    <div class="eta-time" id="etaTime">--:--</div>
+  <div class="steps">
+    <div class="step" id="st0"><div class="ic">📋</div><div class="lb">Confirming</div></div>
+    <div class="step" id="st1"><div class="ic">🍳</div><div class="lb">Preparing</div></div>
+    <div class="step" id="st2"><div class="ic">🛵</div><div class="lb">On the way</div></div>
+    <div class="step" id="st3"><div class="ic">📦</div><div class="lb">Delivered</div></div>
+  </div>
+  <div class="steps-line"><div class="steps-fill" id="stepsFill"></div></div>
+
+  <div class="eta-card">
+    <div class="eta-label" id="etaLabel">Confirming in</div>
+    <div class="eta-time" id="etaTime">--</div>
+    <div class="stage-emoji" id="stageEmoji"></div>
     <div class="status-line" id="statusLine"></div>
   </div>
 
-  <div class="mapwrap">
-    <svg viewBox="0 0 480 340" width="100%" xmlns="http://www.w3.org/2000/svg">
-      <rect width="480" height="340" fill="#e8f4e0"/>
-      <path d="M 0 250 Q 120 230 200 260 T 480 240 L 480 290 Q 300 310 160 290 T 0 300 Z" fill="#bfe3f2"/>
-      <rect x="30" y="40" width="70" height="50" rx="6" fill="#d9e8d0" stroke="#b5cfa6" stroke-width="2"/>
-      <rect x="130" y="120" width="60" height="60" rx="6" fill="#d9e8d0" stroke="#b5cfa6" stroke-width="2"/>
-      <rect x="300" y="50" width="80" height="55" rx="6" fill="#d9e8d0" stroke="#b5cfa6" stroke-width="2"/>
-      <rect x="350" y="170" width="60" height="50" rx="6" fill="#d9e8d0" stroke="#b5cfa6" stroke-width="2"/>
-      <circle cx="240" cy="60" r="12" fill="#8fbf7f"/>
-      <circle cx="265" cy="75" r="9" fill="#8fbf7f"/>
-      <circle cx="70" cy="180" r="11" fill="#8fbf7f"/>
+  <div class="mapwrap" id="mapWrap">
+    <svg viewBox="0 0 480 360" width="100%" xmlns="http://www.w3.org/2000/svg">
+      <rect width="480" height="360" fill="#f2efe9"/>
+      <rect x="240" y="20" width="130" height="90" rx="8" fill="#cde8c2"/>
+      <circle cx="270" cy="50" r="11" fill="#8fbf7f"/>
+      <circle cx="305" cy="75" r="14" fill="#8fbf7f"/>
+      <circle cx="340" cy="45" r="10" fill="#8fbf7f"/>
+      <text x="305" y="102" font-size="9" text-anchor="middle" fill="#7ba36b" font-style="italic">Banana Park</text>
+      <path d="M 0 320 Q 120 305 240 318 T 480 312 L 480 360 L 0 360 Z" fill="#bfdff0"/>
+      <path d="M 0 328 Q 120 314 240 326 T 480 320" fill="none" stroke="#a8cfe6" stroke-width="2"/>
+      <g stroke="#d8d4cc" stroke-width="22" fill="none" stroke-linecap="round">
+        <path d="M 20 120 H 460"/><path d="M 210 20 V 250"/>
+        <path d="M 20 250 H 460"/><path d="M 410 120 V 290"/><path d="M 80 120 V 250"/>
+      </g>
+      <g stroke="#ffffff" stroke-width="18" fill="none" stroke-linecap="round">
+        <path d="M 20 120 H 460"/><path d="M 210 20 V 250"/>
+        <path d="M 20 250 H 460"/><path d="M 410 120 V 290"/><path d="M 80 120 V 250"/>
+      </g>
+      <g stroke="#e0ddd5" stroke-width="2" fill="none" stroke-dasharray="10 8">
+        <path d="M 20 120 H 460"/><path d="M 210 20 V 250"/><path d="M 20 250 H 460"/>
+      </g>
+      <text x="135" y="114" font-size="9" fill="#9a958a" font-style="italic">Jalan Ayam</text>
+      <text x="300" y="244" font-size="9" fill="#9a958a" font-style="italic">Banana Lane</text>
+      <text x="218" y="60" font-size="9" fill="#9a958a" font-style="italic" transform="rotate(90 218 60)">Lorong Kopi</text>
+      <g>
+        <rect x="100" y="140" width="90" height="46" rx="4" fill="#e6e0d4" stroke="#cfc8b8" stroke-width="1.5"/>
+        <g fill="#b8c9d9">
+          <rect x="108" y="148" width="9" height="9"/><rect x="123" y="148" width="9" height="9"/>
+          <rect x="138" y="148" width="9" height="9"/><rect x="153" y="148" width="9" height="9"/>
+          <rect x="168" y="148" width="9" height="9"/>
+          <rect x="108" y="165" width="9" height="9"/><rect x="123" y="165" width="9" height="9"/>
+          <rect x="138" y="165" width="9" height="9"/><rect x="153" y="165" width="9" height="9"/>
+          <rect x="168" y="165" width="9" height="9"/>
+        </g>
+        <rect x="240" y="140" width="70" height="46" rx="4" fill="#e6e0d4" stroke="#cfc8b8" stroke-width="1.5"/>
+        <g fill="#b8c9d9">
+          <rect x="248" y="148" width="9" height="9"/><rect x="263" y="148" width="9" height="9"/>
+          <rect x="278" y="148" width="9" height="9"/><rect x="293" y="148" width="9" height="9"/>
+          <rect x="248" y="165" width="9" height="9"/><rect x="263" y="165" width="9" height="9"/>
+          <rect x="278" y="165" width="9" height="9"/><rect x="293" y="165" width="9" height="9"/>
+        </g>
+        <rect x="30" y="30" width="60" height="55" rx="4" fill="#e6e0d4" stroke="#cfc8b8" stroke-width="1.5"/>
+        <g fill="#b8c9d9">
+          <rect x="38" y="38" width="9" height="9"/><rect x="53" y="38" width="9" height="9"/><rect x="68" y="38" width="9" height="9"/>
+          <rect x="38" y="55" width="9" height="9"/><rect x="53" y="55" width="9" height="9"/><rect x="68" y="55" width="9" height="9"/>
+        </g>
+        <rect x="240" y="270" width="100" height="35" rx="4" fill="#e6e0d4" stroke="#cfc8b8" stroke-width="1.5"/>
+        <text x="290" y="292" font-size="9" text-anchor="middle" fill="#9a958a">Kopitiam (closed)</text>
+      </g>
       <path id="route"
-        d="M 45 105 C 90 160, 120 200, 190 195 S 290 130, 330 140 S 420 220, 430 265"
-        fill="none" stroke="#00b14f" stroke-width="4" stroke-dasharray="8 7" stroke-linecap="round"/>
-      <text x="45" y="98" font-size="26" text-anchor="middle">🍗</text>
-      <text x="45" y="128" font-size="10" text-anchor="middle" fill="#555" font-weight="bold">Uncle Seng's</text>
-      <text x="430" y="262" font-size="26" text-anchor="middle">🏠</text>
-      <text x="430" y="290" font-size="10" text-anchor="middle" fill="#555" font-weight="bold">Blk 4D Banana Lane</text>
+        d="M 60 108 L 198 108 Q 210 108 210 122 L 210 238 Q 210 250 224 250 L 396 250 Q 410 250 410 262 L 410 276"
+        fill="none" stroke="#00b14f" stroke-width="5" stroke-dasharray="9 7" stroke-linecap="round"/>
+      <text x="60" y="96" font-size="26" text-anchor="middle">🍗</text>
+      <text x="60" y="76" font-size="9" text-anchor="middle" fill="#555" font-weight="bold">Uncle Seng's</text>
+      <text x="428" y="300" font-size="26" text-anchor="middle">🏠</text>
+      <text x="428" y="316" font-size="9" text-anchor="middle" fill="#555" font-weight="bold">Blk 4D</text>
       <text id="scooter" font-size="28" text-anchor="middle" dominant-baseline="middle">🛵</text>
     </svg>
   </div>
@@ -232,6 +390,61 @@
 </div>
 
 <script>
+  // ===== the menu =====
+  const IMG = "https://commons.wikimedia.org/wiki/Special:FilePath/";
+  const dishes = [
+    {
+      name: "Signature Chicken Rice (Steamed)",
+      desc: "Fragrant rice, tender poached chicken, chilli, ginger, dark soy. Comes with soup of the day.",
+      price: 4.80, sold: "1.2k sold this week",
+      img: "Hainanese_chicken_rice_(in_Macau).jpg"
+    },
+    {
+      name: "Nasi Lemak Special",
+      desc: "Coconut rice on banana leaf, sambal, ikan bilis, peanuts, egg, cucumber. Power one.",
+      price: 5.50, sold: "890 sold this week",
+      img: "Nasi_lemak_on_banana_leaf.jpg"
+    },
+    {
+      name: "Laksa (Extra Cockles)",
+      desc: "Rich coconut gravy, thick bee hoon, tau pok, cockles. Spoon only, no chopsticks needed.",
+      price: 6.00, sold: "743 sold this week",
+      img: "Nyonya_Laksa.jpg"
+    },
+    {
+      name: "Chicken Satay (10 sticks)",
+      desc: "Charcoal-grilled, with peanut sauce, ketupat and cucumber-onion. Smoky confirm.",
+      price: 8.00, sold: "1.5k sticks this week",
+      img: "CHICKEN_SATAY.jpg"
+    }
+  ];
+
+  let currentDish = dishes[0];
+
+  const listEl = document.getElementById('dishList');
+  dishes.forEach((d, i) => {
+    const div = document.createElement('div');
+    div.className = 'dish';
+    div.onclick = () => selectDish(i);
+    div.innerHTML =
+      '<div class="dish-img"><img src="' + IMG + d.img + '?width=200" alt=""></div>' +
+      '<div class="dish-info"><h2>' + d.name + '</h2><p>' + d.desc + '</p>' +
+      '<div class="price">S$' + d.price.toFixed(2) + '</div>' +
+      '<div class="sold">' + d.sold + '</div></div><div>›</div>';
+    listEl.appendChild(div);
+  });
+
+  function selectDish(i) {
+    currentDish = dishes[i];
+    document.getElementById('orderLine').textContent = '1× ' + currentDish.name;
+    document.getElementById('orderPrice').textContent = 'S$' + currentDish.price.toFixed(2);
+    document.getElementById('totalAmt').textContent = 'S$' + (currentDish.price + 0.99).toFixed(2);
+    document.getElementById('discountRow').style.display = 'none';
+    document.getElementById('promoMsg').style.display = 'none';
+    document.getElementById('promoInput').value = '';
+    go('checkout');
+  }
+
   function go(id) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
     document.getElementById(id).classList.add('active');
@@ -247,42 +460,108 @@
     const code = document.getElementById('promoInput').value.trim();
     if (!code) return;
     document.getElementById('discountRow').style.display = 'flex';
-    document.getElementById('totalAmt').textContent = 'S$4.79';
+    document.getElementById('totalAmt').textContent =
+      'S$' + (currentDish.price + 0.99 - 1).toFixed(2);
     const msg = document.getElementById('promoMsg');
     msg.textContent = '✓ Code "' + code.toUpperCase() + '" applied! (All codes work here. All of them.)';
     msg.style.display = 'block';
   }
 
-  // ===== the delivery =====
+  // ===== order counter (this browser only) =====
+  function refreshCounter() {
+    let n = 0;
+    try { n = parseInt(localStorage.getItem('kopeOrders') || '0', 10); } catch (e) {}
+    document.getElementById('orderCounter').textContent =
+      n + " orders kope'd on this phone · S$0.00 spent · and counting 🧠";
+  }
+  refreshCounter();
+
+  // ===== the delivery: four acts =====
   const riders = [
     { name: "Ram Ramsimilinga", trips: "9,812",  plate: "SBN 4444 A" },
     { name: "Ahmad Mohammad",   trips: "12,041", plate: "SFD 8888 K" },
     { name: "Tan Ah Kow",       trips: "23,456", plate: "SKV 1111 B" }
   ];
-  let TRIP_SECONDS, statuses;
+  let rider, TRIP_SECONDS, statuses;
 
-  function setupDelivery() {
-    const r = riders[Math.floor(Math.random() * riders.length)];
-    TRIP_SECONDS = 20 + Math.floor(Math.random() * 11); // random 20–30 real seconds
-    const first = r.name.split(" ")[0];
-    statuses = [
-      [0,                   "Rider " + first + " has kope'd your order 🛵"],
-      [TRIP_SECONDS * 0.25, "Crossing the canal…"],
-      [TRIP_SECONDS * 0.5,  "Overtaking a bus (safely)…"],
-      [TRIP_SECONDS * 0.72, "Almost at Banana Lane…"],
-      [TRIP_SECONDS * 0.92, first + " is at your void deck!"]
-    ];
-    document.getElementById('riderInfo').innerHTML =
-      "<b>" + r.name + "</b> ⭐ 5.0 · " + r.trips + " trips";
-    document.getElementById('vehicleInfo').textContent = "Scooter · " + r.plate;
+  function setStage(n) {
+    for (let i = 0; i < 4; i++) {
+      document.getElementById('st' + i).classList.toggle('on', i <= n);
+    }
+    document.getElementById('stepsFill').style.width = (n / 3 * 100) + '%';
   }
 
   function startDelivery() {
     if ("Notification" in window && Notification.permission === "default") {
       Notification.requestPermission();
     }
-    setupDelivery();
+    rider = riders[Math.floor(Math.random() * riders.length)];
+    TRIP_SECONDS = 20 + Math.floor(Math.random() * 11);
+    const first = rider.name.split(" ")[0];
+    statuses = [
+      [0,                   "Rider " + first + " has kope'd your order 🛵"],
+      [TRIP_SECONDS * 0.25, "Turning into Lorong Kopi…"],
+      [TRIP_SECONDS * 0.5,  "Overtaking a bus (safely)…"],
+      [TRIP_SECONDS * 0.72, "Cruising down Banana Lane…"],
+      [TRIP_SECONDS * 0.92, first + " is at your void deck!"]
+    ];
+    document.getElementById('riderInfo').innerHTML =
+      "<b>" + rider.name + "</b> ⭐ 5.0 · " + rider.trips + " trips";
+    document.getElementById('vehicleInfo').textContent = "Scooter · " + rider.plate;
+    document.getElementById('courierSub').textContent = "Order #8888 · " + currentDish.name;
+    document.getElementById('mapWrap').style.display = 'none';
     go('courier');
+    actConfirming();
+  }
+
+  // ACT 1: 10-second confirmation countdown
+  function actConfirming() {
+    setStage(0);
+    document.getElementById('courierTitle').textContent = 'Confirming your order…';
+    document.getElementById('etaLabel').textContent = 'Confirming in';
+    const emoji = document.getElementById('stageEmoji');
+    emoji.style.display = 'block'; emoji.textContent = '📋';
+    document.getElementById('statusLine').textContent = 'Sending your order to Uncle Seng…';
+    const eta = document.getElementById('etaTime');
+    let t = 10;
+    eta.textContent = t;
+    const iv = setInterval(() => {
+      t--;
+      eta.textContent = t;
+      if (t <= 0) { clearInterval(iv); actPreparing(); }
+    }, 1000);
+  }
+
+  // ACT 2: kitchen preparing (~7 seconds of wok drama)
+  function actPreparing() {
+    setStage(1);
+    document.getElementById('courierTitle').textContent = 'Order confirmed!';
+    document.getElementById('etaLabel').textContent = 'Kitchen status';
+    document.getElementById('etaTime').textContent = '🔥';
+    const emoji = document.getElementById('stageEmoji');
+    emoji.textContent = '🍳';
+    const line = document.getElementById('statusLine');
+    const kitchen = [
+      'Uncle Seng is preparing your ' + currentDish.name + '…',
+      'Wok hei intensifying…',
+      'Packing it hot with extra chilli…'
+    ];
+    let k = 0;
+    line.textContent = kitchen[0];
+    const iv = setInterval(() => {
+      k++;
+      if (k < kitchen.length) { line.textContent = kitchen[k]; }
+      else { clearInterval(iv); actRiding(); }
+    }, 2400);
+  }
+
+  // ACT 3: rider picked up — the map ride
+  function actRiding() {
+    setStage(2);
+    document.getElementById('courierTitle').textContent = 'Your rider is on the way';
+    document.getElementById('etaLabel').textContent = 'Arriving in';
+    document.getElementById('stageEmoji').style.display = 'none';
+    document.getElementById('mapWrap').style.display = 'block';
 
     const route = document.getElementById('route');
     const scooter = document.getElementById('scooter');
@@ -297,7 +576,7 @@
 
       const pt = route.getPointAtLength(frac * total);
       scooter.setAttribute('x', pt.x);
-      scooter.setAttribute('y', pt.y - 6);
+      scooter.setAttribute('y', pt.y - 4);
 
       const remain = Math.max(TRIP_SECONDS - Math.floor(elapsed), 0);
       eta.textContent = '0:' + String(remain).padStart(2, '0');
@@ -309,20 +588,32 @@
       if (frac < 1) {
         requestAnimationFrame(tick);
       } else {
-        eta.textContent = '0:00';
-        statusLine.textContent = 'Delivered! 🎉';
-        notifyArrival();
-        setTimeout(() => go('reveal'), 900);
+        actDelivered();
       }
     }
     requestAnimationFrame(tick);
   }
 
+  // ACT 4: delivered — BOOM
+  function actDelivered() {
+    setStage(3);
+    document.getElementById('etaTime').textContent = '0:00';
+    document.getElementById('courierTitle').textContent = 'Delivered!';
+    document.getElementById('statusLine').textContent = 'Knock knock. 🎉';
+    try {
+      const n = parseInt(localStorage.getItem('kopeOrders') || '0', 10) + 1;
+      localStorage.setItem('kopeOrders', String(n));
+    } catch (e) {}
+    refreshCounter();
+    notifyArrival();
+    setTimeout(() => go('reveal'), 900);
+  }
+
   function notifyArrival() {
     if (!("Notification" in window) || Notification.permission !== "granted") return;
     const n = new Notification("KopeFood · Delivered! 🛵", {
-      body: "Your order has arrived. Tap to open 📦",
-      icon: "https://commons.wikimedia.org/wiki/Special:FilePath/Hainanese_chicken_rice_(in_Macau).jpg?width=200"
+      body: "Your " + currentDish.name + " has arrived. Tap to open 📦",
+      icon: IMG + currentDish.img + "?width=200"
     });
     n.onclick = () => { window.focus(); go('reveal'); n.close(); };
   }
