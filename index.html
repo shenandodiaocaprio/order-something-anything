@@ -65,8 +65,7 @@
   .shop.closed h2 { color: #999; }
   .closed-tag { font-size: 11px; font-weight: 700; color: #c0392b; margin-top: 3px; }
   .open-tag { font-size: 11px; font-weight: 700; color: #00a344; margin-top: 3px; }
-  .dish { background: #fff; padding: 14px 16px; display: flex; gap: 12px; align-items: center; cursor: pointer; }
-  .dish:active { background: #f8f8f8; }
+  .dish { background: #fff; padding: 14px 16px; display: flex; gap: 12px; align-items: center; }
   .dish-img { width: 84px; height: 84px; border-radius: 10px; overflow: hidden; flex-shrink: 0; }
   .dish-img img { width: 100%; height: 100%; object-fit: cover; }
   .dish-info { flex: 1; }
@@ -74,7 +73,14 @@
   .dish-info p { font-size: 12px; color: #777; margin-top: 4px; line-height: 1.4; }
   .price { font-weight: 700; font-size: 15px; margin-top: 6px; }
   .sold { font-size: 11px; color: #aaa; margin-top: 2px; }
-  .bottombar {
+  .qty { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+  .qty button {
+    width: 30px; height: 30px; border-radius: 8px; border: none;
+    background: #00b14f; color: #fff; font-size: 18px; font-weight: 700; cursor: pointer;
+  }
+  .qty button.minus { background: #eee; color: #555; }
+  .qty .n { font-weight: 800; font-size: 15px; min-width: 18px; text-align: center; }
+  .cartbar {
     position: sticky; bottom: 0; padding: 12px 16px; background: #fff;
     box-shadow: 0 -2px 12px rgba(0,0,0,.08);
   }
@@ -83,7 +89,8 @@
     border-radius: 10px; padding: 15px; font-size: 16px;
     font-weight: 700; cursor: pointer;
   }
-  .bigbtn:active { background: #009943; }
+  .bigbtn:disabled { background: #ccc; cursor: default; }
+  .bigbtn:not(:disabled):active { background: #009943; }
   .row { display: flex; justify-content: space-between; font-size: 14px; padding: 6px 0; }
   .row.total { font-weight: 700; font-size: 16px; border-top: 1px solid #eee; margin-top: 6px; padding-top: 10px; }
   .payopt {
@@ -116,8 +123,6 @@
   .promomsg { font-size: 12px; color: #00a344; margin-top: 6px; font-weight: 600; display: none; }
   .back { background: none; border: none; color: #fff; font-size: 15px; cursor: pointer; padding: 0; margin-bottom: 6px; }
   .credit { text-align: center; font-size: 10px; color: #bbb; padding: 10px; line-height: 1.5; }
-
-  /* order stage tracker */
   .steps { display: flex; background: #fff; padding: 14px 10px 10px; }
   .step { flex: 1; text-align: center; opacity: .35; transition: opacity .3s; }
   .step.on { opacity: 1; }
@@ -125,14 +130,12 @@
   .step .lb { font-size: 9px; font-weight: 700; color: #555; margin-top: 3px; text-transform: uppercase; letter-spacing: .3px; }
   .steps-line { height: 3px; background: #eee; margin: 0 16px; border-radius: 2px; overflow: hidden; }
   .steps-fill { height: 100%; width: 0%; background: #00b14f; transition: width .5s; }
-
   .eta-card { text-align: center; padding: 18px 16px; background: #fff; border-bottom: 8px solid #f5f5f5; }
   .eta-card .eta-label { font-size: 13px; color: #888; }
   .eta-card .eta-time { font-size: 40px; font-weight: 800; color: #00a344; font-variant-numeric: tabular-nums; }
   .status-line { font-size: 14px; color: #555; margin-top: 8px; min-height: 20px; }
   .stage-emoji { font-size: 44px; margin-top: 4px; display: none; }
   .mapwrap { background: #fff; border-bottom: 8px solid #f5f5f5; display: none; }
-
   .reveal {
     min-height: 80vh; display: flex; flex-direction: column;
     align-items: center; justify-content: center; text-align: center;
@@ -176,10 +179,10 @@
   <div class="section-title">Restaurants near you</div>
 
   <div class="shop" onclick="go('menu')">
-    <div class="shop-icon">🍗</div>
+    <div class="shop-icon">☕</div>
     <div class="shop-info">
-      <h2>Uncle Seng's Hainanese Chicken Rice</h2>
-      <p>⭐ 4.9 (2,341) · 20–30 min · $0.99 delivery</p>
+      <h2>Seng's Kopitiam</h2>
+      <p>⭐ 4.9 (2,341) · 20–30 min · Chicken rice · Nasi lemak · Laksa · Kopi</p>
       <div class="open-tag">● Open now</div>
     </div>
     <div>›</div>
@@ -213,11 +216,11 @@
   </div>
 
   <div class="shop closed">
-    <div class="shop-icon">☕</div>
+    <div class="shop-icon">🧋</div>
     <div class="shop-info">
-      <h2>Kopi &amp; Toast Traditional</h2>
+      <h2>Boba Universe</h2>
       <p>⭐ 4.6 (3,410) · 10–20 min</p>
-      <div class="closed-tag">● Closed · Uncle went JB</div>
+      <div class="closed-tag">● Closed · Pearls not ready</div>
     </div>
   </div>
 
@@ -231,18 +234,23 @@
 <div class="screen" id="menu">
   <div class="topbar">
     <button class="back" onclick="go('shops')">‹ Back</button>
-    <div class="big">Uncle Seng's Hainanese Chicken Rice</div>
+    <div class="big">Seng's Kopitiam</div>
   </div>
   <div class="hero">
-    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hainanese_chicken_rice_(in_Macau).jpg?width=960" alt="Chicken rice">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Hainanese_chicken_rice_(in_Macau).jpg?width=960" alt="Kopitiam food">
   </div>
   <div class="card">
-    <h1>Uncle Seng's Hainanese Chicken Rice</h1>
-    <div class="meta">⭐ 4.9 (2,341 ratings) · <b>20–30 min</b> · $0.99 delivery</div>
+    <h1>Seng's Kopitiam</h1>
+    <div class="meta">⭐ 4.9 (2,341 ratings) · <b>20–30 min</b></div>
     <div class="badge">✓ Preferred Merchant</div>
   </div>
-  <div class="section-title">Menu · tap a dish to order</div>
-  <div id="dishList"></div>
+  <div class="section-title">Food</div>
+  <div id="foodList"></div>
+  <div class="section-title">Drinks</div>
+  <div id="drinkList"></div>
+  <div class="cartbar">
+    <button class="bigbtn" id="cartBtn" disabled onclick="goCheckout()">Cart is empty — add something!</button>
+  </div>
 </div>
 
 <!-- ============ SCREEN 2: CHECKOUT ============ -->
@@ -253,8 +261,9 @@
   </div>
   <div class="card">
     <div class="section-title" style="padding:0 0 8px;">Order Summary</div>
-    <div class="row"><span id="orderLine">1× dish</span><span id="orderPrice"></span></div>
-    <div class="row"><span>Delivery fee</span><span>S$0.99</span></div>
+    <div id="cartRows"></div>
+    <div class="row"><span>Subtotal</span><span id="subtotalAmt"></span></div>
+    <div class="row"><span>Delivery fee <span style="font-size:11px;color:#aaa;">(surprise!)</span></span><span>S$0.99</span></div>
     <div class="row" id="discountRow" style="display:none;color:#00a344;">
       <span>Promo discount</span><span>−S$1.00</span>
     </div>
@@ -282,7 +291,7 @@
       no details are collected, and no real money is involved — ever. Tap away freely.
     </div>
   </div>
-  <div class="bottombar">
+  <div class="cartbar">
     <button class="bigbtn" onclick="startDelivery()">Place order</button>
   </div>
 </div>
@@ -290,7 +299,7 @@
 <!-- ============ SCREEN 3: TRACKING ============ -->
 <div class="screen" id="courier">
   <div class="topbar">
-    <div class="small" id="courierSub">Order #8888 · Uncle Seng's</div>
+    <div class="small" id="courierSub">Order #8888 · Seng's Kopitiam</div>
     <div class="big" id="courierTitle">Confirming your order…</div>
   </div>
 
@@ -361,8 +370,8 @@
       <path id="route"
         d="M 60 108 L 198 108 Q 210 108 210 122 L 210 238 Q 210 250 224 250 L 396 250 Q 410 250 410 262 L 410 276"
         fill="none" stroke="#00b14f" stroke-width="5" stroke-dasharray="9 7" stroke-linecap="round"/>
-      <text x="60" y="96" font-size="26" text-anchor="middle">🍗</text>
-      <text x="60" y="76" font-size="9" text-anchor="middle" fill="#555" font-weight="bold">Uncle Seng's</text>
+      <text x="60" y="96" font-size="26" text-anchor="middle">☕</text>
+      <text x="60" y="76" font-size="9" text-anchor="middle" fill="#555" font-weight="bold">Seng's Kopitiam</text>
       <text x="428" y="300" font-size="26" text-anchor="middle">🏠</text>
       <text x="428" y="316" font-size="9" text-anchor="middle" fill="#555" font-weight="bold">Blk 4D</text>
       <text id="scooter" font-size="28" text-anchor="middle" dominant-baseline="middle">🛵</text>
@@ -392,57 +401,113 @@
 <script>
   // ===== the menu =====
   const IMG = "https://commons.wikimedia.org/wiki/Special:FilePath/";
-  const dishes = [
-    {
+  const items = [
+    { cat: "food",
       name: "Signature Chicken Rice (Steamed)",
-      desc: "Fragrant rice, tender poached chicken, chilli, ginger, dark soy. Comes with soup of the day.",
+      desc: "Fragrant rice, tender poached chicken, chilli, ginger, dark soy.",
       price: 4.80, sold: "1.2k sold this week",
-      img: "Hainanese_chicken_rice_(in_Macau).jpg"
-    },
-    {
+      img: "Hainanese_chicken_rice_(in_Macau).jpg" },
+    { cat: "food",
       name: "Nasi Lemak Special",
-      desc: "Coconut rice on banana leaf, sambal, ikan bilis, peanuts, egg, cucumber. Power one.",
+      desc: "Coconut rice on banana leaf, sambal, ikan bilis, peanuts, egg.",
       price: 5.50, sold: "890 sold this week",
-      img: "Nasi_lemak_on_banana_leaf.jpg"
-    },
-    {
+      img: "Nasi_lemak_on_banana_leaf.jpg" },
+    { cat: "food",
       name: "Laksa (Extra Cockles)",
-      desc: "Rich coconut gravy, thick bee hoon, tau pok, cockles. Spoon only, no chopsticks needed.",
+      desc: "Rich coconut gravy, thick bee hoon, tau pok, cockles.",
       price: 6.00, sold: "743 sold this week",
-      img: "Nyonya_Laksa.jpg"
-    },
-    {
+      img: "Nyonya_Laksa.jpg" },
+    { cat: "food",
       name: "Chicken Satay (10 sticks)",
-      desc: "Charcoal-grilled, with peanut sauce, ketupat and cucumber-onion. Smoky confirm.",
+      desc: "Charcoal-grilled, peanut sauce, ketupat, cucumber-onion.",
       price: 8.00, sold: "1.5k sticks this week",
-      img: "CHICKEN_SATAY.jpg"
-    }
+      img: "CHICKEN_SATAY.jpg" },
+    { cat: "drink",
+      name: "Kopi",
+      desc: "Strong Nanyang coffee with condensed milk. Gao by default.",
+      price: 1.60, sold: "3.1k cups this week",
+      img: "Kopi_tarik_di_Kopitiam_Ancol_-_Pasar_Jambi,_Kota_Jambi,_JA.jpg" },
+    { cat: "drink",
+      name: "Teh Tarik",
+      desc: "Pulled milk tea, extra frothy. Pulled from a respectful height.",
+      price: 1.80, sold: "2.4k cups this week",
+      img: "Teh_Tarik.jpg" },
+    { cat: "drink",
+      name: "Teh C Special",
+      desc: "Tea with evaporated milk and gula melaka. Sweet until shiok.",
+      price: 2.20, sold: "980 cups this week",
+      img: "Teh_C_Special.jpg" }
   ];
 
-  let currentDish = dishes[0];
+  const cart = new Array(items.length).fill(0);
+  const DELIVERY_FEE = 0.99;
+  let promoApplied = false;
 
-  const listEl = document.getElementById('dishList');
-  dishes.forEach((d, i) => {
-    const div = document.createElement('div');
-    div.className = 'dish';
-    div.onclick = () => selectDish(i);
-    div.innerHTML =
-      '<div class="dish-img"><img src="' + IMG + d.img + '?width=200" alt=""></div>' +
-      '<div class="dish-info"><h2>' + d.name + '</h2><p>' + d.desc + '</p>' +
-      '<div class="price">S$' + d.price.toFixed(2) + '</div>' +
-      '<div class="sold">' + d.sold + '</div></div><div>›</div>';
-    listEl.appendChild(div);
-  });
+  function buildMenu() {
+    const food = document.getElementById('foodList');
+    const drink = document.getElementById('drinkList');
+    items.forEach((d, i) => {
+      const div = document.createElement('div');
+      div.className = 'dish';
+      div.innerHTML =
+        '<div class="dish-img"><img src="' + IMG + d.img + '?width=200" alt=""></div>' +
+        '<div class="dish-info"><h2>' + d.name + '</h2><p>' + d.desc + '</p>' +
+        '<div class="price">S$' + d.price.toFixed(2) + '</div>' +
+        '<div class="sold">' + d.sold + '</div>' +
+        '<div class="qty">' +
+          '<button class="minus" onclick="changeQty(' + i + ',-1)">−</button>' +
+          '<span class="n" id="qty' + i + '">0</span>' +
+          '<button onclick="changeQty(' + i + ',1)">+</button>' +
+        '</div></div>';
+      (d.cat === 'food' ? food : drink).appendChild(div);
+    });
+  }
+  buildMenu();
 
-  function selectDish(i) {
-    currentDish = dishes[i];
-    document.getElementById('orderLine').textContent = '1× ' + currentDish.name;
-    document.getElementById('orderPrice').textContent = 'S$' + currentDish.price.toFixed(2);
-    document.getElementById('totalAmt').textContent = 'S$' + (currentDish.price + 0.99).toFixed(2);
+  function cartCount() { return cart.reduce((a, b) => a + b, 0); }
+  function cartSubtotal() {
+    return cart.reduce((sum, q, i) => sum + q * items[i].price, 0);
+  }
+
+  function changeQty(i, delta) {
+    cart[i] = Math.max(0, cart[i] + delta);
+    document.getElementById('qty' + i).textContent = cart[i];
+    const btn = document.getElementById('cartBtn');
+    const n = cartCount();
+    if (n === 0) {
+      btn.disabled = true;
+      btn.textContent = 'Cart is empty — add something!';
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'View cart · ' + n + (n === 1 ? ' item' : ' items') +
+        ' · S$' + cartSubtotal().toFixed(2);
+    }
+  }
+
+  function goCheckout() {
+    promoApplied = false;
     document.getElementById('discountRow').style.display = 'none';
     document.getElementById('promoMsg').style.display = 'none';
     document.getElementById('promoInput').value = '';
+    const rowsEl = document.getElementById('cartRows');
+    rowsEl.innerHTML = '';
+    items.forEach((d, i) => {
+      if (cart[i] > 0) {
+        const r = document.createElement('div');
+        r.className = 'row';
+        r.innerHTML = '<span>' + cart[i] + '× ' + d.name + '</span>' +
+          '<span>S$' + (cart[i] * d.price).toFixed(2) + '</span>';
+        rowsEl.appendChild(r);
+      }
+    });
+    document.getElementById('subtotalAmt').textContent = 'S$' + cartSubtotal().toFixed(2);
+    updateTotal();
     go('checkout');
+  }
+
+  function updateTotal() {
+    let total = cartSubtotal() + DELIVERY_FEE - (promoApplied ? 1 : 0);
+    document.getElementById('totalAmt').textContent = 'S$' + total.toFixed(2);
   }
 
   function go(id) {
@@ -459,9 +524,9 @@
   function applyPromo() {
     const code = document.getElementById('promoInput').value.trim();
     if (!code) return;
+    promoApplied = true;
     document.getElementById('discountRow').style.display = 'flex';
-    document.getElementById('totalAmt').textContent =
-      'S$' + (currentDish.price + 0.99 - 1).toFixed(2);
+    updateTotal();
     const msg = document.getElementById('promoMsg');
     msg.textContent = '✓ Code "' + code.toUpperCase() + '" applied! (All codes work here. All of them.)';
     msg.style.display = 'block';
@@ -491,6 +556,11 @@
     document.getElementById('stepsFill').style.width = (n / 3 * 100) + '%';
   }
 
+  function firstCartItem() {
+    for (let i = 0; i < items.length; i++) if (cart[i] > 0) return items[i];
+    return items[0];
+  }
+
   function startDelivery() {
     if ("Notification" in window && Notification.permission === "default") {
       Notification.requestPermission();
@@ -501,27 +571,28 @@
     statuses = [
       [0,                   "Rider " + first + " has kope'd your order 🛵"],
       [TRIP_SECONDS * 0.25, "Turning into Lorong Kopi…"],
-      [TRIP_SECONDS * 0.5,  "Overtaking a bus (safely)…"],
+      [TRIP_SECONDS * 0.5,  "Balancing your drinks carefully…"],
       [TRIP_SECONDS * 0.72, "Cruising down Banana Lane…"],
       [TRIP_SECONDS * 0.92, first + " is at your void deck!"]
     ];
     document.getElementById('riderInfo').innerHTML =
       "<b>" + rider.name + "</b> ⭐ 5.0 · " + rider.trips + " trips";
     document.getElementById('vehicleInfo').textContent = "Scooter · " + rider.plate;
-    document.getElementById('courierSub').textContent = "Order #8888 · " + currentDish.name;
+    const n = cartCount();
+    document.getElementById('courierSub').textContent =
+      "Order #8888 · " + n + (n === 1 ? " item" : " items") + " · Seng's Kopitiam";
     document.getElementById('mapWrap').style.display = 'none';
     go('courier');
     actConfirming();
   }
 
-  // ACT 1: 10-second confirmation countdown
   function actConfirming() {
     setStage(0);
     document.getElementById('courierTitle').textContent = 'Confirming your order…';
     document.getElementById('etaLabel').textContent = 'Confirming in';
     const emoji = document.getElementById('stageEmoji');
     emoji.style.display = 'block'; emoji.textContent = '📋';
-    document.getElementById('statusLine').textContent = 'Sending your order to Uncle Seng…';
+    document.getElementById('statusLine').textContent = "Sending your order to Seng's Kopitiam…";
     const eta = document.getElementById('etaTime');
     let t = 10;
     eta.textContent = t;
@@ -532,7 +603,6 @@
     }, 1000);
   }
 
-  // ACT 2: kitchen preparing (~7 seconds of wok drama)
   function actPreparing() {
     setStage(1);
     document.getElementById('courierTitle').textContent = 'Order confirmed!';
@@ -541,10 +611,11 @@
     const emoji = document.getElementById('stageEmoji');
     emoji.textContent = '🍳';
     const line = document.getElementById('statusLine');
+    const n = cartCount();
     const kitchen = [
-      'Uncle Seng is preparing your ' + currentDish.name + '…',
-      'Wok hei intensifying…',
-      'Packing it hot with extra chilli…'
+      "Seng is preparing your " + n + (n === 1 ? " item" : " items") + "…",
+      "Wok hei intensifying…",
+      "Kopi pulled. Order packed hot…"
     ];
     let k = 0;
     line.textContent = kitchen[0];
@@ -555,7 +626,6 @@
     }, 2400);
   }
 
-  // ACT 3: rider picked up — the map ride
   function actRiding() {
     setStage(2);
     document.getElementById('courierTitle').textContent = 'Your rider is on the way';
@@ -594,7 +664,6 @@
     requestAnimationFrame(tick);
   }
 
-  // ACT 4: delivered — BOOM
   function actDelivered() {
     setStage(3);
     document.getElementById('etaTime').textContent = '0:00';
@@ -611,11 +680,13 @@
 
   function notifyArrival() {
     if (!("Notification" in window) || Notification.permission !== "granted") return;
-    const n = new Notification("KopeFood · Delivered! 🛵", {
-      body: "Your " + currentDish.name + " has arrived. Tap to open 📦",
-      icon: IMG + currentDish.img + "?width=200"
+    const item = firstCartItem();
+    const n = cartCount();
+    const nn = new Notification("KopeFood · Delivered! 🛵", {
+      body: "Your " + n + (n === 1 ? " item has" : " items have") + " arrived. Tap to open 📦",
+      icon: IMG + item.img + "?width=200"
     });
-    n.onclick = () => { window.focus(); go('reveal'); n.close(); };
+    nn.onclick = () => { window.focus(); go('reveal'); nn.close(); };
   }
 
   function openBox() {
