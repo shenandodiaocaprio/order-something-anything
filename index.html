@@ -411,7 +411,7 @@
   const SUGAR  = ["100% sugar", "50% sugar", "0% sugar (why)"];
   const SWEET  = ["Normal sweet", "Extra gula melaka", "Less sweet (doctor said)"];
 
-  const shops = {
+    const shops = {
     seng: {
       name: "Uncle Seng's Kopitiam",
       shortName: "Uncle Seng's",
@@ -434,6 +434,12 @@
             price: 6.00, sold: "743 sold this week", img: "Nyonya_Laksa.jpg", opts: CHILLI },
           { name: "Char Kway Teow", desc: "Flat rice noodles, dark soy, lap cheong, beansprouts, wok hei.",
             price: 5.00, sold: "1.1k sold this week", img: "Char_kway_teow.jpg", opts: CHILLI },
+          { name: "Fried Hokkien Mee", desc: "Prawn stock soaked noodles, sambal, small limau. Wet style, no debate.",
+            price: 5.50, sold: "980 sold this week", img: "Fried_Hokkien_mee_in_Singapore_-_20140215.jpg", opts: CHILLI },
+          { name: "Wanton Mee", desc: "Springy noodles, char siu, plump wantons, chilli or ketchup (choose wisely).",
+            price: 4.50, sold: "1.0k sold this week", img: "WantonMee.JPG", opts: CHILLI },
+          { name: "Fried Carrot Cake (Black)", desc: "Contains no carrot. Never has. Sweet dark soy, egg, radish cake.",
+            price: 4.00, sold: "870 sold this week", emoji: "🥕", opts: CHILLI },
           { name: "Chicken Satay (10 sticks)", desc: "Charcoal-grilled, peanut sauce, ketupat, cucumber-onion.",
             price: 8.00, sold: "1.5k sticks this week", img: "CHICKEN_SATAY.jpg", opts: CHILLI },
           { name: "Kaya Toast Set", desc: "Crispy toast, kaya + butter, two soft-boiled eggs. Dip everything.",
@@ -447,7 +453,11 @@
           { name: "Teh C Special", desc: "Tea with evaporated milk and gula melaka. Sweet until shiok.",
             price: 2.20, sold: "980 cups this week", img: "Teh_C_Special.jpg", opts: null },
           { name: "Milo Dinosaur", desc: "Iced Milo buried under a mountain of Milo powder. Rawr.",
-            price: 3.00, sold: "1.8k cups this week", img: "Milo_dinosaur.jpg", opts: null }
+            price: 3.00, sold: "1.8k cups this week", img: "Milo_dinosaur.jpg", opts: null },
+          { name: "Sugarcane Juice", desc: "Pressed fresh while you watch (in spirit). With lemon, obviously.",
+            price: 2.50, sold: "1.1k cups this week", emoji: "🎋", opts: null },
+          { name: "Iced Lime Juice", desc: "Sour, sweet, suspiciously green. The hawker classic.",
+            price: 1.80, sold: "930 cups this week", emoji: "🍋", opts: null }
         ]}
       ]
     },
@@ -470,13 +480,21 @@
           { name: "Brown Sugar Boba Fresh Milk", desc: "Tiger stripes down the cup. Zero tea, all drama.",
             price: 5.20, sold: "2.1k cups this week", emoji: "🐯", opts: SUGAR },
           { name: "Taro Milk Tea", desc: "Purple, creamy, tastes like a hug.",
-            price: 5.00, sold: "1.4k cups this week", emoji: "💜", opts: SUGAR }
+            price: 5.00, sold: "1.4k cups this week", emoji: "💜", opts: SUGAR },
+          { name: "Strawberry Milk + Pearls", desc: "Pink, photogenic, tastes like recess.",
+            price: 5.30, sold: "760 cups this week", emoji: "🍓", opts: SUGAR },
+          { name: "Cheese Foam Green Tea", desc: "Salty cloud on top. Confusing. Delicious. Confusing.",
+            price: 5.80, sold: "540 cups this week", emoji: "🧀", opts: SUGAR }
         ]},
         { title: "Fruit Teas", items: [
           { name: "Mango Green Tea + Pearls", desc: "Real mango vibes, questionable mango content.",
             price: 4.80, sold: "1.2k cups this week", emoji: "🥭", opts: SUGAR },
           { name: "Passionfruit Yakult Sparkle", desc: "Fizzy, tangy, probably a mistake before bedtime.",
-            price: 5.50, sold: "860 cups this week", emoji: "✨", opts: SUGAR }
+            price: 5.50, sold: "860 cups this week", emoji: "✨", opts: SUGAR },
+          { name: "Winter Melon Tea", desc: "The quiet elder statesman of the menu. Smooth, caramel-y.",
+            price: 3.80, sold: "690 cups this week", emoji: "🍈", opts: SUGAR },
+          { name: "Lychee Burst Tea", desc: "Popping pearls that explode lychee. Tiny fireworks.",
+            price: 5.00, sold: "610 cups this week", emoji: "🎆", opts: SUGAR }
         ]}
       ]
     },
@@ -485,7 +503,7 @@
       shortName: "Prata Corner",
       icon: "🥞",
       meta: "⭐ 4.7 (988 ratings) · <b>15–25 min</b> · Actually 24hr today",
-      hero: null, heroEmoji: "🥞",
+      hero: "Roti_Prata_Curry_Large.JPG",
       kitchen: [
         "Flipping your prata sky-high…",
         "Dough achieving maximum flakiness…",
@@ -495,13 +513,19 @@
       sections: [
         { title: "Prata", items: [
           { name: "Prata Kosong (2 pcs)", desc: "Flaky, crispy, arrives with a small lake of curry.",
-            price: 2.00, sold: "2.8k sold this week", emoji: "🥞", opts: null },
+            price: 2.00, sold: "2.8k sold this week", img: "Roti_Prata_Curry_Large.JPG", opts: null },
           { name: "Prata Telur", desc: "Egg folded inside. The responsible choice.",
-            price: 2.80, sold: "1.9k sold this week", emoji: "🍳", opts: null },
+            price: 2.80, sold: "1.9k sold this week", img: "Roti_prata_(8436906467).jpg", opts: null },
+          { name: "Cheese Prata", desc: "Molten cheese core. The kids' committee insisted.",
+            price: 3.20, sold: "1.1k sold this week", emoji: "🧀", opts: null },
           { name: "Prata Bomb", desc: "Thicc. Condensed milk core. Not for the faint-hearted.",
             price: 3.50, sold: "970 sold this week", emoji: "💣", opts: null },
+          { name: "Tissue Prata", desc: "A crispy sugar tower taller than your drink. Structural marvel.",
+            price: 4.00, sold: "680 sold this week", emoji: "🗼", opts: null },
           { name: "Murtabak Chicken", desc: "The prata's final form. Stuffed, mighty, shareable (optional).",
-            price: 6.50, sold: "640 sold this week", emoji: "🌯", opts: CHILLI },
+            price: 6.50, sold: "640 sold this week", img: "Murtabak_at_Makan2_Perth.jpg", opts: CHILLI },
+          { name: "Thosai Masala", desc: "Crispy fermented crepe, spiced potato inside. The elegant cousin.",
+            price: 3.00, sold: "590 sold this week", emoji: "🫓", opts: CHILLI },
           { name: "Maggi Goreng", desc: "Instant noodles elevated to 2am legend status.",
             price: 4.50, sold: "1.3k sold this week", emoji: "🍜", opts: CHILLI }
         ]},
@@ -509,7 +533,9 @@
           { name: "Teh Halia", desc: "Ginger tea, pulled. Warms the soul, clears the sinuses.",
             price: 1.80, sold: "890 cups this week", emoji: "🫚", opts: null },
           { name: "Air Bandung", desc: "Rose syrup and milk. Aggressively pink.",
-            price: 1.60, sold: "720 cups this week", emoji: "🌸", opts: null }
+            price: 1.60, sold: "720 cups this week", emoji: "🌸", opts: null },
+          { name: "Milo Godzilla", desc: "Milo Dinosaur plus ice cream. The final boss.",
+            price: 3.80, sold: "480 cups this week", emoji: "🦖", opts: null }
         ]}
       ]
     },
@@ -518,7 +544,7 @@
       shortName: "Ah Huat's",
       icon: "🍧",
       meta: "⭐ 4.8 (1,540 ratings) · <b>15–25 min</b> · Freezing since 1983",
-      hero: null, heroEmoji: "🍧",
+      hero: "Ice_kacang_at_Aroma_Selera_2021-01-21.jpg",
       kitchen: [
         "Shaving the ice mountain…",
         "Drizzling gula melaka generously…",
@@ -528,19 +554,28 @@
       sections: [
         { title: "Ice Desserts", items: [
           { name: "Ice Kacang", desc: "Rainbow ice mountain over red beans, jelly, corn, attap chee.",
-            price: 3.00, sold: "1.6k sold this week", emoji: "🍧", opts: SWEET },
+            price: 3.00, sold: "1.6k sold this week", img: "Ice_kacang_at_Aroma_Selera_2021-01-21.jpg", opts: SWEET },
           { name: "Chendol", desc: "Coconut milk, gula melaka, green worms (the good kind).",
-            price: 2.80, sold: "1.4k sold this week", emoji: "🥥", opts: SWEET },
+            price: 2.80, sold: "1.4k sold this week", img: "Cendol_in_a_Glass.JPG", opts: SWEET },
           { name: "Mango Sago Pomelo", desc: "The atas one. Creamy, tangy, photogenic.",
             price: 4.50, sold: "780 sold this week", emoji: "🥭", opts: SWEET },
           { name: "Ice Cream Potong Sandwich", desc: "Brick of ice cream, rainbow bread. Architecture.",
-            price: 2.00, sold: "2.1k sold this week", emoji: "🍦", opts: null },
+            price: 2.00, sold: "2.1k sold this week", emoji: "🍦", opts: null }
+        ]},
+        { title: "Warm Desserts", items: [
           { name: "Tang Yuan (4 pcs)", desc: "Chewy glutinous balls in warm ginger soup. Grandma-approved.",
-            price: 3.20, sold: "560 sold this week", emoji: "🍡", opts: null }
+            price: 3.20, sold: "560 sold this week", emoji: "🍡", opts: null },
+          { name: "Tau Huay", desc: "Silky beancurd, wobblier than your Monday resolve.",
+            price: 2.00, sold: "1.2k sold this week", emoji: "🍮", opts: SWEET },
+          { name: "Bubur Cha Cha", desc: "Sweet potato, yam, sago in warm coconut milk. A cha-cha in a bowl.",
+            price: 3.00, sold: "490 sold this week", emoji: "🍠", opts: SWEET },
+          { name: "Cheng Tng", desc: "Clear, gentle, full of mysterious beneficial things. Aunty says drink.",
+            price: 2.50, sold: "530 sold this week", emoji: "🥣", opts: null }
         ]}
       ]
     }
   };
+
 
   let currentShopId = 'seng';
   let cart = {};   // key: "sec|idx|opt" -> qty
