@@ -400,18 +400,23 @@
 
 <script>
   // ===================================================================
-  // THE MENUS — this is the part you and the kids can edit yourselves!
-  // To add a dish: copy any line that starts with { name: ... },
-  // paste it below another dish in the same items list, and change:
-  //   name, desc, price, emoji  (keep the comma at the end!)
-  // Commit, refresh, and it's on the menu. That's it.
+  // THE MENUS — the part you and the kids can edit yourselves!
+  // Add a dish: copy any { name: ... }, line, paste it below another
+  // dish in the same items list, change name/desc/price/emoji.
+  // opts:   spice or sugar dropdown (CHILLI / SUGAR / SWEET / null)
+  // extras: add-ons dropdown (EXTRA_NOODLE / EXTRA_RICE / EXTRA_PRATA / null)
   // ===================================================================
   const IMG = "https://commons.wikimedia.org/wiki/Special:FilePath/";
   const CHILLI = ["Spicy 🌶️🌶️", "Mild 🌶️", "No chilli"];
-  const SUGAR  = ["100% sugar", "50% sugar", "0% sugar (why)"];
-  const SWEET  = ["Normal sweet", "Extra gula melaka", "Less sweet (doctor said)"];
+  const SUGAR  = ["Extra sugar (120%) 🍬", "100% sugar", "50% sugar", "0% sugar (why)"];
+  const SWEET  = ["Extra gula melaka 🍬", "Normal sweet", "Less sweet (doctor said)"];
 
-    const shops = {
+  // Add-ons: [label, extra price]
+  const EXTRA_NOODLE = [["No extras", 0], ["Extra noodles", 1.00], ["Extra egg 🍳", 0.60], ["Extra lard (shh) 🐷", 0.50]];
+  const EXTRA_RICE   = [["No extras", 0], ["Extra rice", 0.80], ["Extra egg 🍳", 0.60], ["Extra chicken", 2.00]];
+  const EXTRA_PRATA  = [["No extras", 0], ["Extra curry (free!)", 0], ["Extra egg 🍳", 0.60], ["Extra crispy (free!)", 0]];
+
+  const shops = {
     seng: {
       name: "Uncle Seng's Kopitiam",
       shortName: "Uncle Seng's",
@@ -427,37 +432,41 @@
       sections: [
         { title: "Food", items: [
           { name: "Signature Chicken Rice (Steamed)", desc: "Fragrant rice, poached chicken, ginger, dark soy.",
-            price: 4.80, sold: "1.2k sold this week", img: "Hainanese_chicken_rice_(in_Macau).jpg", opts: CHILLI },
+            price: 4.80, sold: "1.2k sold this week", img: "Hainanese_chicken_rice_(in_Macau).jpg", opts: CHILLI, extras: EXTRA_RICE },
           { name: "Nasi Lemak Special", desc: "Coconut rice on banana leaf, sambal, ikan bilis, egg.",
-            price: 5.50, sold: "890 sold this week", img: "Nasi_lemak_on_banana_leaf.jpg", opts: CHILLI },
+            price: 5.50, sold: "890 sold this week", img: "Nasi_lemak_on_banana_leaf.jpg", opts: CHILLI, extras: EXTRA_RICE },
           { name: "Laksa (Extra Cockles)", desc: "Rich coconut gravy, thick bee hoon, tau pok, cockles.",
-            price: 6.00, sold: "743 sold this week", img: "Nyonya_Laksa.jpg", opts: CHILLI },
+            price: 6.00, sold: "743 sold this week", img: "Nyonya_Laksa.jpg", opts: CHILLI, extras: EXTRA_NOODLE },
           { name: "Char Kway Teow", desc: "Flat rice noodles, dark soy, lap cheong, beansprouts, wok hei.",
-            price: 5.00, sold: "1.1k sold this week", img: "Char_kway_teow.jpg", opts: CHILLI },
+            price: 5.00, sold: "1.1k sold this week", img: "Char_kway_teow.jpg", opts: CHILLI, extras: EXTRA_NOODLE },
           { name: "Fried Hokkien Mee", desc: "Prawn stock soaked noodles, sambal, small limau. Wet style, no debate.",
-            price: 5.50, sold: "980 sold this week", img: "Fried_Hokkien_mee_in_Singapore_-_20140215.jpg", opts: CHILLI },
+            price: 5.50, sold: "980 sold this week", img: "Fried_Hokkien_mee_in_Singapore_-_20140215.jpg", opts: CHILLI, extras: EXTRA_NOODLE },
           { name: "Wanton Mee", desc: "Springy noodles, char siu, plump wantons, chilli or ketchup (choose wisely).",
-            price: 4.50, sold: "1.0k sold this week", img: "WantonMee.JPG", opts: CHILLI },
+            price: 4.50, sold: "1.0k sold this week", img: "WantonMee.JPG", opts: CHILLI, extras: EXTRA_NOODLE },
+          { name: "Beef Hor Fun", desc: "Silky flat noodles in glossy gravy. The wok breathed on this one.",
+            price: 6.50, sold: "620 sold this week", emoji: "🍲", opts: CHILLI, extras: EXTRA_NOODLE },
+          { name: "Sambal Stingray", desc: "On banana leaf, buried in sambal. Comes with tongs of authority.",
+            price: 12.00, sold: "340 sold this week", emoji: "🐟", opts: CHILLI, extras: null },
           { name: "Fried Carrot Cake (Black)", desc: "Contains no carrot. Never has. Sweet dark soy, egg, radish cake.",
-            price: 4.00, sold: "870 sold this week", emoji: "🥕", opts: CHILLI },
+            price: 4.00, sold: "870 sold this week", emoji: "🥕", opts: CHILLI, extras: [["No extras", 0], ["Extra egg 🍳", 0.60], ["Extra crispy bits", 0.50]] },
           { name: "Chicken Satay (10 sticks)", desc: "Charcoal-grilled, peanut sauce, ketupat, cucumber-onion.",
-            price: 8.00, sold: "1.5k sticks this week", img: "CHICKEN_SATAY.jpg", opts: CHILLI },
+            price: 8.00, sold: "1.5k sticks this week", img: "CHICKEN_SATAY.jpg", opts: CHILLI, extras: [["No extras", 0], ["Extra peanut sauce", 0.50], ["Extra ketupat", 0.80]] },
           { name: "Kaya Toast Set", desc: "Crispy toast, kaya + butter, two soft-boiled eggs. Dip everything.",
-            price: 3.60, sold: "2.2k sets this week", img: "Kaya_toast_dip_into_soft_boiled_egg.jpg", opts: null }
+            price: 3.60, sold: "2.2k sets this week", img: "Kaya_toast_dip_into_soft_boiled_egg.jpg", opts: null, extras: [["No extras", 0], ["Extra egg 🍳", 0.60], ["Extra kaya", 0.40]] }
         ]},
         { title: "Drinks", items: [
           { name: "Kopi", desc: "Strong Nanyang coffee with condensed milk. Gao by default.",
-            price: 1.60, sold: "3.1k cups this week", img: "Kopi_tarik_di_Kopitiam_Ancol_-_Pasar_Jambi,_Kota_Jambi,_JA.jpg", opts: null },
+            price: 1.60, sold: "3.1k cups this week", img: "Kopi_tarik_di_Kopitiam_Ancol_-_Pasar_Jambi,_Kota_Jambi,_JA.jpg", opts: SUGAR, extras: null },
           { name: "Teh Tarik", desc: "Pulled milk tea, extra frothy. Pulled from a respectful height.",
-            price: 1.80, sold: "2.4k cups this week", img: "Teh_Tarik.jpg", opts: null },
+            price: 1.80, sold: "2.4k cups this week", img: "Teh_Tarik.jpg", opts: SUGAR, extras: null },
           { name: "Teh C Special", desc: "Tea with evaporated milk and gula melaka. Sweet until shiok.",
-            price: 2.20, sold: "980 cups this week", img: "Teh_C_Special.jpg", opts: null },
+            price: 2.20, sold: "980 cups this week", img: "Teh_C_Special.jpg", opts: SUGAR, extras: null },
           { name: "Milo Dinosaur", desc: "Iced Milo buried under a mountain of Milo powder. Rawr.",
-            price: 3.00, sold: "1.8k cups this week", img: "Milo_dinosaur.jpg", opts: null },
+            price: 3.00, sold: "1.8k cups this week", img: "Milo_dinosaur.jpg", opts: null, extras: [["No extras", 0], ["Extra Milo mountain", 0.50]] },
           { name: "Sugarcane Juice", desc: "Pressed fresh while you watch (in spirit). With lemon, obviously.",
-            price: 2.50, sold: "1.1k cups this week", emoji: "🎋", opts: null },
+            price: 2.50, sold: "1.1k cups this week", emoji: "🎋", opts: null, extras: null },
           { name: "Iced Lime Juice", desc: "Sour, sweet, suspiciously green. The hawker classic.",
-            price: 1.80, sold: "930 cups this week", emoji: "🍋", opts: null }
+            price: 1.80, sold: "930 cups this week", emoji: "🍋", opts: SUGAR, extras: null }
         ]}
       ]
     },
@@ -476,25 +485,25 @@
       sections: [
         { title: "Milk Teas", items: [
           { name: "Classic Pearl Milk Tea", desc: "The one that started it all. Chewy pearls, silky tea.",
-            price: 4.50, sold: "2.9k cups this week", emoji: "🧋", opts: SUGAR },
+            price: 4.50, sold: "2.9k cups this week", emoji: "🧋", opts: SUGAR, extras: [["No extras", 0], ["Extra pearls", 0.70], ["Extra everything", 1.50]] },
           { name: "Brown Sugar Boba Fresh Milk", desc: "Tiger stripes down the cup. Zero tea, all drama.",
-            price: 5.20, sold: "2.1k cups this week", emoji: "🐯", opts: SUGAR },
+            price: 5.20, sold: "2.1k cups this week", emoji: "🐯", opts: SUGAR, extras: [["No extras", 0], ["Extra pearls", 0.70]] },
           { name: "Taro Milk Tea", desc: "Purple, creamy, tastes like a hug.",
-            price: 5.00, sold: "1.4k cups this week", emoji: "💜", opts: SUGAR },
+            price: 5.00, sold: "1.4k cups this week", emoji: "💜", opts: SUGAR, extras: [["No extras", 0], ["Extra pearls", 0.70]] },
           { name: "Strawberry Milk + Pearls", desc: "Pink, photogenic, tastes like recess.",
-            price: 5.30, sold: "760 cups this week", emoji: "🍓", opts: SUGAR },
+            price: 5.30, sold: "760 cups this week", emoji: "🍓", opts: SUGAR, extras: [["No extras", 0], ["Extra pearls", 0.70]] },
           { name: "Cheese Foam Green Tea", desc: "Salty cloud on top. Confusing. Delicious. Confusing.",
-            price: 5.80, sold: "540 cups this week", emoji: "🧀", opts: SUGAR }
+            price: 5.80, sold: "540 cups this week", emoji: "🧀", opts: SUGAR, extras: [["No extras", 0], ["Extra foam", 0.80]] }
         ]},
         { title: "Fruit Teas", items: [
           { name: "Mango Green Tea + Pearls", desc: "Real mango vibes, questionable mango content.",
-            price: 4.80, sold: "1.2k cups this week", emoji: "🥭", opts: SUGAR },
+            price: 4.80, sold: "1.2k cups this week", emoji: "🥭", opts: SUGAR, extras: [["No extras", 0], ["Extra pearls", 0.70]] },
           { name: "Passionfruit Yakult Sparkle", desc: "Fizzy, tangy, probably a mistake before bedtime.",
-            price: 5.50, sold: "860 cups this week", emoji: "✨", opts: SUGAR },
+            price: 5.50, sold: "860 cups this week", emoji: "✨", opts: SUGAR, extras: null },
           { name: "Winter Melon Tea", desc: "The quiet elder statesman of the menu. Smooth, caramel-y.",
-            price: 3.80, sold: "690 cups this week", emoji: "🍈", opts: SUGAR },
+            price: 3.80, sold: "690 cups this week", emoji: "🍈", opts: SUGAR, extras: null },
           { name: "Lychee Burst Tea", desc: "Popping pearls that explode lychee. Tiny fireworks.",
-            price: 5.00, sold: "610 cups this week", emoji: "🎆", opts: SUGAR }
+            price: 5.00, sold: "610 cups this week", emoji: "🎆", opts: SUGAR, extras: [["No extras", 0], ["Extra popping pearls", 0.80]] }
         ]}
       ]
     },
@@ -513,29 +522,31 @@
       sections: [
         { title: "Prata", items: [
           { name: "Prata Kosong (2 pcs)", desc: "Flaky, crispy, arrives with a small lake of curry.",
-            price: 2.00, sold: "2.8k sold this week", img: "Roti_Prata_Curry_Large.JPG", opts: null },
+            price: 2.00, sold: "2.8k sold this week", img: "Roti_Prata_Curry_Large.JPG", opts: null, extras: EXTRA_PRATA },
           { name: "Prata Telur", desc: "Egg folded inside. The responsible choice.",
-            price: 2.80, sold: "1.9k sold this week", img: "Roti_prata_(8436906467).jpg", opts: null },
+            price: 2.80, sold: "1.9k sold this week", img: "Roti_prata_(8436906467).jpg", opts: null, extras: EXTRA_PRATA },
+          { name: "Coin Prata (6 pcs)", desc: "Small, thick, dangerously poppable. Like prata but gacha.",
+            price: 4.50, sold: "820 sold this week", img: "Coin_prata.png", opts: null, extras: EXTRA_PRATA },
           { name: "Cheese Prata", desc: "Molten cheese core. The kids' committee insisted.",
-            price: 3.20, sold: "1.1k sold this week", emoji: "🧀", opts: null },
+            price: 3.20, sold: "1.1k sold this week", emoji: "🧀", opts: null, extras: EXTRA_PRATA },
           { name: "Prata Bomb", desc: "Thicc. Condensed milk core. Not for the faint-hearted.",
-            price: 3.50, sold: "970 sold this week", emoji: "💣", opts: null },
+            price: 3.50, sold: "970 sold this week", emoji: "💣", opts: null, extras: [["No extras", 0], ["Extra condensed milk", 0.40]] },
           { name: "Tissue Prata", desc: "A crispy sugar tower taller than your drink. Structural marvel.",
-            price: 4.00, sold: "680 sold this week", emoji: "🗼", opts: null },
+            price: 4.00, sold: "680 sold this week", emoji: "🗼", opts: null, extras: null },
           { name: "Murtabak Chicken", desc: "The prata's final form. Stuffed, mighty, shareable (optional).",
-            price: 6.50, sold: "640 sold this week", img: "Murtabak_at_Makan2_Perth.jpg", opts: CHILLI },
+            price: 6.50, sold: "640 sold this week", img: "Murtabak_at_Makan2_Perth.jpg", opts: CHILLI, extras: EXTRA_PRATA },
           { name: "Thosai Masala", desc: "Crispy fermented crepe, spiced potato inside. The elegant cousin.",
-            price: 3.00, sold: "590 sold this week", emoji: "🫓", opts: CHILLI },
+            price: 3.00, sold: "590 sold this week", emoji: "🫓", opts: CHILLI, extras: EXTRA_PRATA },
           { name: "Maggi Goreng", desc: "Instant noodles elevated to 2am legend status.",
-            price: 4.50, sold: "1.3k sold this week", emoji: "🍜", opts: CHILLI }
+            price: 4.50, sold: "1.3k sold this week", emoji: "🍜", opts: CHILLI, extras: EXTRA_NOODLE }
         ]},
         { title: "Drinks", items: [
           { name: "Teh Halia", desc: "Ginger tea, pulled. Warms the soul, clears the sinuses.",
-            price: 1.80, sold: "890 cups this week", emoji: "🫚", opts: null },
+            price: 1.80, sold: "890 cups this week", emoji: "🫚", opts: SUGAR, extras: null },
           { name: "Air Bandung", desc: "Rose syrup and milk. Aggressively pink.",
-            price: 1.60, sold: "720 cups this week", emoji: "🌸", opts: null },
+            price: 1.60, sold: "720 cups this week", emoji: "🌸", opts: SUGAR, extras: null },
           { name: "Milo Godzilla", desc: "Milo Dinosaur plus ice cream. The final boss.",
-            price: 3.80, sold: "480 cups this week", emoji: "🦖", opts: null }
+            price: 3.80, sold: "480 cups this week", emoji: "🦖", opts: null, extras: [["No extras", 0], ["Extra ice cream", 0.80]] }
         ]}
       ]
     },
@@ -554,31 +565,32 @@
       sections: [
         { title: "Ice Desserts", items: [
           { name: "Ice Kacang", desc: "Rainbow ice mountain over red beans, jelly, corn, attap chee.",
-            price: 3.00, sold: "1.6k sold this week", img: "Ice_kacang_at_Aroma_Selera_2021-01-21.jpg", opts: SWEET },
+            price: 3.00, sold: "1.6k sold this week", img: "Ice_kacang_at_Aroma_Selera_2021-01-21.jpg", opts: SWEET, extras: [["No extras", 0], ["Extra ice cream scoop", 0.80], ["Extra everything", 1.20]] },
           { name: "Chendol", desc: "Coconut milk, gula melaka, green worms (the good kind).",
-            price: 2.80, sold: "1.4k sold this week", img: "Cendol_in_a_Glass.JPG", opts: SWEET },
+            price: 2.80, sold: "1.4k sold this week", img: "Cendol_in_a_Glass.JPG", opts: SWEET, extras: [["No extras", 0], ["Extra chendol worms", 0.50]] },
           { name: "Mango Sago Pomelo", desc: "The atas one. Creamy, tangy, photogenic.",
-            price: 4.50, sold: "780 sold this week", emoji: "🥭", opts: SWEET },
+            price: 4.50, sold: "780 sold this week", emoji: "🥭", opts: SWEET, extras: null },
           { name: "Ice Cream Potong Sandwich", desc: "Brick of ice cream, rainbow bread. Architecture.",
-            price: 2.00, sold: "2.1k sold this week", emoji: "🍦", opts: null }
+            price: 2.00, sold: "2.1k sold this week", emoji: "🍦", opts: null, extras: null }
         ]},
         { title: "Warm Desserts", items: [
           { name: "Tang Yuan (4 pcs)", desc: "Chewy glutinous balls in warm ginger soup. Grandma-approved.",
-            price: 3.20, sold: "560 sold this week", emoji: "🍡", opts: null },
+            price: 3.20, sold: "560 sold this week", emoji: "🍡", opts: null, extras: [["No extras", 0], ["Extra 2 pcs", 1.00]] },
           { name: "Tau Huay", desc: "Silky beancurd, wobblier than your Monday resolve.",
-            price: 2.00, sold: "1.2k sold this week", emoji: "🍮", opts: SWEET },
+            price: 2.00, sold: "1.2k sold this week", emoji: "🍮", opts: SWEET, extras: null },
           { name: "Bubur Cha Cha", desc: "Sweet potato, yam, sago in warm coconut milk. A cha-cha in a bowl.",
-            price: 3.00, sold: "490 sold this week", emoji: "🍠", opts: SWEET },
+            price: 3.00, sold: "490 sold this week", emoji: "🍠", opts: SWEET, extras: null },
+          { name: "Pulut Hitam", desc: "Black glutinous rice porridge, coconut cream crown. Midnight in a bowl.",
+            price: 2.80, sold: "440 sold this week", emoji: "🖤", opts: SWEET, extras: null },
           { name: "Cheng Tng", desc: "Clear, gentle, full of mysterious beneficial things. Aunty says drink.",
-            price: 2.50, sold: "530 sold this week", emoji: "🥣", opts: null }
+            price: 2.50, sold: "530 sold this week", emoji: "🥣", opts: null, extras: null }
         ]}
       ]
     }
   };
 
-
   let currentShopId = 'seng';
-  let cart = {};   // key: "sec|idx|opt" -> qty
+  let cart = {};   // key: "sec|idx|opt|extra" -> qty
   const DELIVERY_FEE = 0.99;
   let promoApplied = false;
 
@@ -615,10 +627,14 @@
           ? '<select class="optsel" id="opt_' + s + '_' + i + '" onchange="refreshQtyDisplay(\'' + key + '\')">' +
               d.opts.map(o => '<option>' + o + '</option>').join('') + '</select>'
           : '';
+        const extraHtml = d.extras
+          ? '<select class="optsel" id="ext_' + s + '_' + i + '" onchange="refreshQtyDisplay(\'' + key + '\')">' +
+              d.extras.map(e => '<option>' + e[0] + (e[1] > 0 ? ' +$' + e[1].toFixed(2) : '') + '</option>').join('') + '</select>'
+          : '';
         div.innerHTML = imgHtml +
           '<div class="dish-info"><h2>' + d.name + '</h2><p>' + d.desc + '</p>' +
           '<div class="price">S$' + d.price.toFixed(2) + '</div>' +
-          '<div class="sold">' + d.sold + '</div>' + optHtml +
+          '<div class="sold">' + d.sold + '</div>' + optHtml + extraHtml +
           '<div class="qty">' +
             '<button class="minus" onclick="changeQty(\'' + key + '\',-1)">−</button>' +
             '<span class="n" id="qty_' + s + '_' + i + '">0</span>' +
@@ -642,7 +658,22 @@
     return sel ? sel.value : '';
   }
 
-  function cartKey(key) { return key + '|' + currentOpt(key); }
+  function currentExtra(key) {
+    const [s, i] = key.split('|');
+    const sel = document.getElementById('ext_' + s + '_' + i);
+    return sel ? sel.value : '';
+  }
+
+  function extraPrice(item, extraLabel) {
+    if (!item.extras || !extraLabel) return 0;
+    for (const e of item.extras) {
+      const label = e[0] + (e[1] > 0 ? ' +$' + e[1].toFixed(2) : '');
+      if (label === extraLabel) return e[1];
+    }
+    return 0;
+  }
+
+  function cartKey(key) { return key + '|' + currentOpt(key) + '|' + currentExtra(key); }
 
   function changeQty(key, delta) {
     const ck = cartKey(key);
@@ -662,13 +693,17 @@
     return Object.entries(cart).map(([ck, qty]) => {
       const parts = ck.split('|');
       const key = parts[0] + '|' + parts[1];
-      return { item: getItem(key), opt: parts[2], qty };
+      const item = getItem(key);
+      const opt = parts[2];
+      const extra = parts[3];
+      const unit = item.price + extraPrice(item, extra);
+      return { item, opt, extra, qty, unit };
     });
   }
 
   function cartCount() { return Object.values(cart).reduce((a, b) => a + b, 0); }
   function cartSubtotal() {
-    return cartEntries().reduce((sum, e) => sum + e.qty * e.item.price, 0);
+    return cartEntries().reduce((sum, e) => sum + e.qty * e.unit, 0);
   }
 
   function updateCartBtn() {
@@ -695,9 +730,12 @@
     cartEntries().forEach(e => {
       const r = document.createElement('div');
       r.className = 'row';
-      const optLabel = e.opt ? ' <span style="color:#999;font-size:12px;">(' + e.opt + ')</span>' : '';
-      r.innerHTML = '<span>' + e.qty + '× ' + e.item.name + optLabel + '</span>' +
-        '<span>S$' + (e.qty * e.item.price).toFixed(2) + '</span>';
+      const bits = [];
+      if (e.opt) bits.push(e.opt);
+      if (e.extra && !e.extra.startsWith('No extras')) bits.push(e.extra);
+      const detail = bits.length ? ' <span style="color:#999;font-size:12px;">(' + bits.join(' · ') + ')</span>' : '';
+      r.innerHTML = '<span>' + e.qty + '× ' + e.item.name + detail + '</span>' +
+        '<span>S$' + (e.qty * e.unit).toFixed(2) + '</span>';
       rowsEl.appendChild(r);
     });
     document.getElementById('subtotalAmt').textContent = 'S$' + cartSubtotal().toFixed(2);
