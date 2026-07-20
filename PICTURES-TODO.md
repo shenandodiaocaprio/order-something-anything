@@ -7,149 +7,149 @@ Generate a 500×500 PNG, name it **exactly** as shown, upload to the repo, tell 
 
 ## 🦀 Ah Seng Tze Char  (5 needed)
 
-- 🆕 **Chilli Crab** — `tzechar-chilli-crab.png`
+- 🆕 **Chilli Crab** — `tzechar-chilli-crab.jpg`
   > Whole crab in sweet-savoury tomato-chilli gravy, egg ribbons. 'Seasonal price' — which here means free, like your feelings.
-- 🆕 **Black Pepper Crab** — `tzechar-black-pepper-crab.png`
+- 🆕 **Black Pepper Crab** — `tzechar-black-pepper-crab.jpg`
   > Peppery, dry, guaranteed mid-bite sneeze. Cutlery is a suggestion; use hands and accept your fate.
-- 🆕 **Cereal Butter Prawns** — `tzechar-cereal-butter-prawns.png`
+- 🆕 **Cereal Butter Prawns** — `tzechar-cereal-butter-prawns.jpg`
   > You will eat the loose cereal bits off the plate. We won't judge — the plate isn't real anyway.
-- 🆕 **Sambal Kangkong** — `tzechar-sambal-kangkong.png`
+- 🆕 **Sambal Kangkong** — `tzechar-sambal-kangkong.jpg`
   > The obligatory greens, so you can tell your mother you ate vegetables.
-- 🆕 **Salted Egg Yolk Chicken** — `tzechar-salted-egg-yolk-chicken.png`
+- 🆕 **Salted Egg Yolk Chicken** — `tzechar-salted-egg-yolk-chicken.jpg`
   > Salted egg on everything, because it's still 2016 somewhere in the heartlands.
 
 ## 🍜 Heng Kee Noodle & Soup  (5 needed)
 
-- 🆕 **Bak Chor Mee** — `noodle-bak-chor-mee.png`
+- 🆕 **Bak Chor Mee** — `noodle-bak-chor-mee.jpg`
   > Michelin-approved (by us, just now). Mee pok, minced pork, liver, that vinegar kick.
-- 🆕 **Fishball Mee Pok Ta** — `noodle-fishball-mee-pok-ta.png`
+- 🆕 **Fishball Mee Pok Ta** — `noodle-fishball-mee-pok-ta.jpg`
   > 'Ta' means dry. Order it with soup instead and aunty will remember your face forever.
-- 🆕 **Lor Mee** — `noodle-lor-mee.png`
+- 🆕 **Lor Mee** — `noodle-lor-mee.jpg`
   > Gravy so starchy it holds a grudge. Egg, ngoh hiang, extra garlic, extra regret.
-- 🆕 **Bak Kut Teh** — `noodle-bak-kut-teh.png`
+- 🆕 **Bak Kut Teh** — `noodle-bak-kut-teh.jpg`
   > Peppery pork-rib soup, bottomless refills — the only thing more bottomless than the bill (S$0).
-- 🆕 **Sliced Fish Bee Hoon Soup** — `noodle-sliced-fish-bee-hoon-soup.png`
+- 🆕 **Sliced Fish Bee Hoon Soup** — `noodle-sliced-fish-bee-hoon-soup.jpg`
   > Milky broth, fresh fish. The evaporated-milk swirl is non-negotiable and slightly emotional.
 
 ## 🍛 Rahim's Nasi Padang & Mee  (5 needed)
 
-- 🆕 **Ayam Penyet** — `nasi-ayam-penyet.png`
+- 🆕 **Ayam Penyet** — `nasi-ayam-penyet.jpg`
   > Chicken smashed flat by someone's very real anger. Sambal that files a police report.
-- 🆕 **Mutton Briyani** — `nasi-mutton-briyani.png`
+- 🆕 **Mutton Briyani** — `nasi-mutton-briyani.jpg`
   > Fragrant basmati, spiced mutton. The achar is free; then again, so is everything.
-- 🆕 **Mee Rebus** — `nasi-mee-rebus.png`
+- 🆕 **Mee Rebus** — `nasi-mee-rebus.jpg`
   > Yellow noodles under a sweet-potato gravy blanket. Comfort food that pays no taxes.
-- 🆕 **Mee Siam** — `nasi-mee-siam.png`
+- 🆕 **Mee Siam** — `nasi-mee-siam.jpg`
   > Tangy, spicy, faintly sweet — like your last group-chat argument.
-- 🆕 **Roti John** — `nasi-roti-john.png`
+- 🆕 **Roti John** — `nasi-roti-john.jpg`
   > Omelette-and-mutton baguette drowned in chilli. 'John' remains unidentified; we stopped asking.
 
 ## ☕ Uncle Seng's Kopitiam  (17 needed)
 
-- 🔄 **Signature Chicken Rice (Steamed)** — `seng-signature-chicken-rice.png`
+- 🔄 **Signature Chicken Rice (Steamed)** — `seng-signature-chicken-rice.jpg`
   > Fragrant rice, poached chicken, ginger, dark soy.
-- 🔄 **Nasi Lemak Special** — `seng-nasi-lemak-special.png`
+- 🔄 **Nasi Lemak Special** — `seng-nasi-lemak-special.jpg`
   > Coconut rice on banana leaf, sambal, ikan bilis, egg.
-- 🔄 **Laksa (Extra Cockles)** — `seng-laksa.png`
+- 🔄 **Laksa (Extra Cockles)** — `seng-laksa.jpg`
   > Rich coconut gravy, thick bee hoon, tau pok, cockles.
-- 🔄 **Char Kway Teow** — `seng-char-kway-teow.png`
+- 🔄 **Char Kway Teow** — `seng-char-kway-teow.jpg`
   > Flat rice noodles, dark soy, lap cheong, beansprouts, wok hei.
-- 🔄 **Fried Hokkien Mee** — `seng-fried-hokkien-mee.png`
+- 🔄 **Fried Hokkien Mee** — `seng-fried-hokkien-mee.jpg`
   > Prawn stock soaked noodles, sambal, small limau. Wet style, no debate.
-- 🔄 **Wanton Mee** — `seng-wanton-mee.png`
+- 🔄 **Wanton Mee** — `seng-wanton-mee.jpg`
   > Springy noodles, char siu, plump wantons, chilli or ketchup (choose wisely).
-- ⬜ **Beef Hor Fun** — `seng-beef-hor-fun.png`
+- ⬜ **Beef Hor Fun** — `seng-beef-hor-fun.jpg`
   > Silky flat noodles in glossy gravy. The wok breathed on this one.
-- ⬜ **Sambal Stingray** — `seng-sambal-stingray.png`
+- ⬜ **Sambal Stingray** — `seng-sambal-stingray.jpg`
   > On banana leaf, buried in sambal. Comes with tongs of authority.
-- ⬜ **Fried Carrot Cake (Black)** — `seng-fried-carrot-cake.png`
+- ⬜ **Fried Carrot Cake (Black)** — `seng-fried-carrot-cake.jpg`
   > Contains no carrot. Never has. Sweet dark soy, egg, radish cake.
-- 🔄 **Chicken Satay (10 sticks)** — `seng-chicken-satay.png`
+- 🔄 **Chicken Satay (10 sticks)** — `seng-chicken-satay.jpg`
   > Charcoal-grilled, peanut sauce, ketupat, cucumber-onion.
-- 🔄 **Kaya Toast Set** — `seng-kaya-toast-set.png`
+- 🔄 **Kaya Toast Set** — `seng-kaya-toast-set.jpg`
   > Crispy toast, kaya + butter, two soft-boiled eggs. Dip everything.
-- 🔄 **Kopi** — `seng-kopi.png`
+- 🔄 **Kopi** — `seng-kopi.jpg`
   > Strong Nanyang coffee with condensed milk. Gao by default.
-- 🔄 **Teh Tarik** — `seng-teh-tarik.png`
+- 🔄 **Teh Tarik** — `seng-teh-tarik.jpg`
   > Pulled milk tea, extra frothy. Pulled from a respectful height.
-- 🔄 **Teh C Special** — `seng-teh-c-special.png`
+- 🔄 **Teh C Special** — `seng-teh-c-special.jpg`
   > Tea with evaporated milk and gula melaka. Sweet until shiok.
-- 🔄 **Milo Dinosaur** — `seng-milo-dinosaur.png`
+- 🔄 **Milo Dinosaur** — `seng-milo-dinosaur.jpg`
   > Iced Milo buried under a mountain of Milo powder. Rawr.
-- ⬜ **Sugarcane Juice** — `seng-sugarcane-juice.png`
+- ⬜ **Sugarcane Juice** — `seng-sugarcane-juice.jpg`
   > Pressed fresh while you watch (in spirit). With lemon, obviously.
-- ⬜ **Iced Lime Juice** — `seng-iced-lime-juice.png`
+- ⬜ **Iced Lime Juice** — `seng-iced-lime-juice.jpg`
   > Sour, sweet, suspiciously green. The hawker classic.
 
 ## 🥞 24hr Prata Corner  (12 needed)
 
-- 🔄 **Prata Kosong (2 pcs)** — `prata-prata-kosong.png`
+- 🔄 **Prata Kosong (2 pcs)** — `prata-prata-kosong.jpg`
   > Flaky, crispy, arrives with a small lake of curry.
-- 🔄 **Prata Telur** — `prata-prata-telur.png`
+- 🔄 **Prata Telur** — `prata-prata-telur.jpg`
   > Egg folded inside. The responsible choice.
-- 🔄 **Coin Prata (6 pcs)** — `prata-coin-prata.png`
+- 🔄 **Coin Prata (6 pcs)** — `prata-coin-prata.jpg`
   > Small, thick, dangerously poppable. Like prata but gacha.
-- ⬜ **Cheese Prata** — `prata-cheese-prata.png`
+- ⬜ **Cheese Prata** — `prata-cheese-prata.jpg`
   > Molten cheese core. The kids' committee insisted.
-- ⬜ **Prata Bomb** — `prata-prata-bomb.png`
+- ⬜ **Prata Bomb** — `prata-prata-bomb.jpg`
   > Thicc. Condensed milk core. Not for the faint-hearted.
-- ⬜ **Tissue Prata** — `prata-tissue-prata.png`
+- ⬜ **Tissue Prata** — `prata-tissue-prata.jpg`
   > A crispy sugar tower taller than your drink. Structural marvel.
-- 🔄 **Murtabak Chicken** — `prata-murtabak-chicken.png`
+- 🔄 **Murtabak Chicken** — `prata-murtabak-chicken.jpg`
   > The prata's final form. Stuffed, mighty, shareable (optional).
-- ⬜ **Thosai Masala** — `prata-thosai-masala.png`
+- ⬜ **Thosai Masala** — `prata-thosai-masala.jpg`
   > Crispy fermented crepe, spiced potato inside. The elegant cousin.
-- ⬜ **Maggi Goreng** — `prata-maggi-goreng.png`
+- ⬜ **Maggi Goreng** — `prata-maggi-goreng.jpg`
   > Instant noodles elevated to 2am legend status.
-- ⬜ **Teh Halia** — `prata-teh-halia.png`
+- ⬜ **Teh Halia** — `prata-teh-halia.jpg`
   > Ginger tea, pulled. Warms the soul, clears the sinuses.
-- ⬜ **Air Bandung** — `prata-air-bandung.png`
+- ⬜ **Air Bandung** — `prata-air-bandung.jpg`
   > Rose syrup and milk. Aggressively pink.
-- ⬜ **Milo Godzilla** — `prata-milo-godzilla.png`
+- ⬜ **Milo Godzilla** — `prata-milo-godzilla.jpg`
   > Milo Dinosaur plus ice cream. The final boss.
 
 ## 🍧 Ah Huat Ice & Sweets  (9 needed)
 
-- 🔄 **Ice Kacang** — `sweet-ice-kacang.png`
+- 🔄 **Ice Kacang** — `sweet-ice-kacang.jpg`
   > Rainbow ice mountain over red beans, jelly, corn, attap chee.
-- 🔄 **Chendol** — `sweet-chendol.png`
+- 🔄 **Chendol** — `sweet-chendol.jpg`
   > Coconut milk, gula melaka, green worms (the good kind).
-- ⬜ **Mango Sago Pomelo** — `sweet-mango-sago-pomelo.png`
+- ⬜ **Mango Sago Pomelo** — `sweet-mango-sago-pomelo.jpg`
   > The atas one. Creamy, tangy, photogenic.
-- ⬜ **Ice Cream Potong Sandwich** — `sweet-ice-cream-potong-sandwich.png`
+- ⬜ **Ice Cream Potong Sandwich** — `sweet-ice-cream-potong-sandwich.jpg`
   > Brick of ice cream, rainbow bread. Architecture.
-- ⬜ **Tang Yuan (4 pcs)** — `sweet-tang-yuan.png`
+- ⬜ **Tang Yuan (4 pcs)** — `sweet-tang-yuan.jpg`
   > Chewy glutinous balls in warm ginger soup. Grandma-approved.
-- ⬜ **Tau Huay** — `sweet-tau-huay.png`
+- ⬜ **Tau Huay** — `sweet-tau-huay.jpg`
   > Silky beancurd, wobblier than your Monday resolve.
-- ⬜ **Bubur Cha Cha** — `sweet-bubur-cha-cha.png`
+- ⬜ **Bubur Cha Cha** — `sweet-bubur-cha-cha.jpg`
   > Sweet potato, yam, sago in warm coconut milk. A cha-cha in a bowl.
-- ⬜ **Pulut Hitam** — `sweet-pulut-hitam.png`
+- ⬜ **Pulut Hitam** — `sweet-pulut-hitam.jpg`
   > Black glutinous rice porridge, coconut cream crown. Midnight in a bowl.
-- ⬜ **Cheng Tng** — `sweet-cheng-tng.png`
+- ⬜ **Cheng Tng** — `sweet-cheng-tng.jpg`
   > Clear, gentle, full of mysterious beneficial things. Aunty says drink.
 
 ## 🍔 KopeBurger  (10 needed)
 
-- ⬜ **The Spicy One** — `burger-the-spicy-one.png`
+- ⬜ **The Spicy One** — `burger-the-spicy-one.jpg`
   > Crispy chicken thigh, mayo, lethal heat. Leaves you changed.
-- ⬜ **Double Cheese KopeBurger** — `burger-double-cheese-kopeburger.png`
+- ⬜ **Double Cheese KopeBurger** — `burger-double-cheese-kopeburger.jpg`
   > Two patties, two cheese, one regret-free decision.
-- ⬜ **Fish Burger** — `burger-fish-burger.png`
+- ⬜ **Fish Burger** — `burger-fish-burger.jpg`
   > Square fish, round bun. Geometry is a construct.
-- ⬜ **Plant Patty Burger** — `burger-plant-patty-burger.png`
+- ⬜ **Plant Patty Burger** — `burger-plant-patty-burger.jpg`
   > For when you want fast food but also moral high ground.
-- ⬜ **Fries** — `burger-fries.png`
+- ⬜ **Fries** — `burger-fries.jpg`
   > Golden, salted, engineered to be eaten before you reach home.
-- ⬜ **Nuggets (9 pcs)** — `burger-nuggets.png`
+- ⬜ **Nuggets (9 pcs)** — `burger-nuggets.jpg`
   > Comes with curry sauce. The curry sauce is the point.
-- ⬜ **Hash Brown** — `burger-hash-brown.png`
+- ⬜ **Hash Brown** — `burger-hash-brown.jpg`
   > Breakfast item available at all hours. We don't ask questions.
-- ⬜ **Sundae** — `burger-sundae.png`
+- ⬜ **Sundae** — `burger-sundae.jpg`
   > The machine works today. We are as surprised as you.
-- ⬜ **Apple Pie** — `burger-apple-pie.png`
+- ⬜ **Apple Pie** — `burger-apple-pie.jpg`
   > Molten core. Wait 5 minutes or suffer. Everyone suffers.
-- ⬜ **Milo Shake** — `burger-milo-shake.png`
+- ⬜ **Milo Shake** — `burger-milo-shake.jpg`
   > The localisation nobody asked for and everybody wanted.
 
 ## 🧋 Boba Universe  (0 needed)

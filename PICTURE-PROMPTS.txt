@@ -10,203 +10,203 @@ SAVE each file using the EXACT filename shown before each prompt.
 
 --- KopeBurger ---
 
-1. FILE: burger-the-spicy-one.png
+1. FILE: burger-the-spicy-one.jpg
    Spicy crispy fried chicken thigh burger with mayo and lettuce in a sesame bun.
 
-2. FILE: burger-double-cheese-kopeburger.png
+2. FILE: burger-double-cheese-kopeburger.jpg
    Double beef patty cheeseburger with two melted cheese slices in a sesame bun.
 
-3. FILE: burger-fish-burger.png
+3. FILE: burger-fish-burger.jpg
    Fish fillet burger with tartar sauce and a slice of cheese in a soft bun.
 
-4. FILE: burger-plant-patty-burger.png
+4. FILE: burger-plant-patty-burger.jpg
    Plant-based veggie patty burger with lettuce and tomato in a bun.
 
-5. FILE: burger-fries.png
+5. FILE: burger-fries.jpg
    A portion of golden crispy french fries.
 
-6. FILE: burger-nuggets.png
+6. FILE: burger-nuggets.jpg
    Nine golden chicken nuggets with a small cup of curry dipping sauce.
 
-7. FILE: burger-hash-brown.png
+7. FILE: burger-hash-brown.jpg
    A single golden crispy oval hash brown patty.
 
-8. FILE: burger-sundae.png
+8. FILE: burger-sundae.jpg
    A soft-serve vanilla ice cream sundae in a cup with chocolate sauce.
 
-9. FILE: burger-apple-pie.png
+9. FILE: burger-apple-pie.jpg
    A fried apple pie pastry pocket, golden and crispy.
 
-10. FILE: burger-milo-shake.png
+10. FILE: burger-milo-shake.jpg
    A Milo chocolate-malt milkshake in a cup.
 
 --- Uncle Seng's Kopitiam ---
 
-11. FILE: seng-signature-chicken-rice.png
+11. FILE: seng-signature-chicken-rice.jpg
    Hainanese chicken rice — slices of poached white chicken on a plate with fragrant oily rice and cucumber, small dishes of chilli and dark soy sauce.
 
-12. FILE: seng-nasi-lemak-special.png
+12. FILE: seng-nasi-lemak-special.jpg
    Nasi lemak — coconut rice on a banana leaf with red sambal, fried anchovies, roasted peanuts, a fried egg and cucumber slices.
 
-13. FILE: seng-laksa.png
+13. FILE: seng-laksa.jpg
    Laksa — thick rice noodles in a rich orange coconut curry gravy, topped with prawns, cockles, tau pok and fishcake, garnished with laksa leaf.
 
-14. FILE: seng-char-kway-teow.png
+14. FILE: seng-char-kway-teow.jpg
    Char kway teow — stir-fried flat rice noodles in dark soy sauce with prawns, Chinese sausage, bean sprouts, egg and cockles, smoky wok-fried.
 
-15. FILE: seng-fried-hokkien-mee.png
+15. FILE: seng-fried-hokkien-mee.jpg
    Singapore Hokkien mee — yellow noodles and rice vermicelli braised in prawn stock with prawns, squid and egg, a side of sambal chilli and lime.
 
-16. FILE: seng-wanton-mee.png
+16. FILE: seng-wanton-mee.jpg
    Wanton mee — dry egg noodles with slices of char siu barbecue pork, wanton dumplings and leafy greens, tossed in chilli sauce.
 
-17. FILE: seng-beef-hor-fun.png
+17. FILE: seng-beef-hor-fun.jpg
    Beef hor fun — silky wide flat rice noodles in a glossy brown gravy with tender beef slices and green vegetables.
 
-18. FILE: seng-sambal-stingray.png
+18. FILE: seng-sambal-stingray.jpg
    Sambal stingray — a grilled stingray wing on a banana leaf topped with red sambal chilli paste, with lime and sliced onion.
 
-19. FILE: seng-fried-carrot-cake.png
+19. FILE: seng-fried-carrot-cake.jpg
    Black fried carrot cake — cubes of white radish cake stir-fried with dark sweet soy sauce, egg and spring onion, on a plate.
 
-20. FILE: seng-chicken-satay.png
+20. FILE: seng-chicken-satay.jpg
    Chicken satay — grilled chicken skewers with char marks, a bowl of peanut sauce, ketupat rice cakes and cucumber-onion.
 
-21. FILE: seng-kaya-toast-set.png
+21. FILE: seng-kaya-toast-set.jpg
    Kaya toast set — toasted bread with kaya coconut jam and a slab of butter, two soft-boiled eggs in a saucer, and a cup of kopi.
 
-22. FILE: seng-kopi.png
+22. FILE: seng-kopi.jpg
    Kopi — a cup of strong dark Nanyang coffee with condensed milk in a traditional ceramic coffee cup.
 
-23. FILE: seng-teh-tarik.png
+23. FILE: seng-teh-tarik.jpg
    Teh tarik — pulled milk tea with a frothy top, in a clear glass cup.
 
-24. FILE: seng-teh-c-special.png
+24. FILE: seng-teh-c-special.jpg
    Teh C — tea with evaporated milk, warm caramel colour, in a clear glass.
 
-25. FILE: seng-milo-dinosaur.png
+25. FILE: seng-milo-dinosaur.jpg
    Milo dinosaur — iced Milo chocolate drink topped with a thick mound of undissolved Milo powder, in a tall glass.
 
-26. FILE: seng-sugarcane-juice.png
+26. FILE: seng-sugarcane-juice.jpg
    Sugarcane juice — a glass of fresh green-tinged sugarcane juice with ice and a slice of lime.
 
-27. FILE: seng-iced-lime-juice.png
+27. FILE: seng-iced-lime-juice.jpg
    Iced lime juice — a tall glass of pale green iced lime juice with lime slices and ice.
 
 --- 24hr Prata Corner ---
 
-28. FILE: prata-prata-kosong.png
+28. FILE: prata-prata-kosong.jpg
    Roti prata kosong — plain crispy golden flaky flatbread with a small bowl of curry.
 
-29. FILE: prata-prata-telur.png
+29. FILE: prata-prata-telur.jpg
    Egg prata — flaky golden flatbread folded around egg, with a bowl of curry.
 
-30. FILE: prata-coin-prata.png
+30. FILE: prata-coin-prata.jpg
    Coin prata — a pile of small thick coin-shaped mini pratas, golden and crispy, with curry dip.
 
-31. FILE: prata-cheese-prata.png
+31. FILE: prata-cheese-prata.jpg
    Cheese prata — flaky prata folded with melted cheese oozing out, golden and crispy.
 
-32. FILE: prata-prata-bomb.png
+32. FILE: prata-prata-bomb.jpg
    Prata bomb — a thick round ball-shaped prata glazed with condensed milk and dusted with sugar.
 
-33. FILE: prata-tissue-prata.png
+33. FILE: prata-tissue-prata.jpg
    Tissue prata — a tall crispy cone-shaped paper-thin prata dusted with sugar, towering on a plate.
 
-34. FILE: prata-murtabak-chicken.png
+34. FILE: prata-murtabak-chicken.jpg
    Chicken murtabak — a thick pan-fried stuffed flatbread filled with minced chicken and egg, cut into squares, with curry.
 
-35. FILE: prata-thosai-masala.png
+35. FILE: prata-thosai-masala.jpg
    Masala thosai — a large crispy golden rolled fermented crepe with spiced potato filling, sides of chutney and sambar.
 
-36. FILE: prata-maggi-goreng.png
+36. FILE: prata-maggi-goreng.jpg
    Maggi goreng — fried instant noodles with egg, vegetables and chilli, garnished, on a plate.
 
-37. FILE: prata-teh-halia.png
+37. FILE: prata-teh-halia.jpg
    Teh halia — frothy ginger milk tea in a glass.
 
-38. FILE: prata-air-bandung.png
+38. FILE: prata-air-bandung.jpg
    Air bandung — a bright pink rose-syrup milk drink with ice in a tall glass.
 
-39. FILE: prata-milo-godzilla.png
+39. FILE: prata-milo-godzilla.jpg
    Milo godzilla — iced Milo drink topped with Milo powder and a scoop of vanilla ice cream, in a tall glass.
 
 --- Ah Huat Ice & Sweets ---
 
-40. FILE: sweet-ice-kacang.png
+40. FILE: sweet-ice-kacang.jpg
    Ice kacang — a mountain of shaved ice drizzled with rainbow-coloured syrups over red beans, jelly and corn, with condensed milk.
 
-41. FILE: sweet-chendol.png
+41. FILE: sweet-chendol.jpg
    Chendol — shaved ice with green rice-flour jelly strands, coconut milk and dark gula melaka palm sugar syrup, in a bowl.
 
-42. FILE: sweet-mango-sago-pomelo.png
+42. FILE: sweet-mango-sago-pomelo.jpg
    Mango sago pomelo — a creamy mango dessert with sago pearls and pomelo bits, topped with mango cubes, in a glass.
 
-43. FILE: sweet-ice-cream-potong-sandwich.png
+43. FILE: sweet-ice-cream-potong-sandwich.jpg
    Ice cream potong sandwich — a brick of colourful ice cream between slices of rainbow bread.
 
-44. FILE: sweet-tang-yuan.png
+44. FILE: sweet-tang-yuan.jpg
    Tang yuan — glutinous rice balls in a clear warm ginger soup in a bowl.
 
-45. FILE: sweet-tau-huay.png
+45. FILE: sweet-tau-huay.jpg
    Tau huay — silky soft beancurd pudding in a bowl with light sweet syrup.
 
-46. FILE: sweet-bubur-cha-cha.png
+46. FILE: sweet-bubur-cha-cha.jpg
    Bubur cha cha — a colourful dessert of sweet potato and yam cubes with sago in warm coconut milk, in a bowl.
 
-47. FILE: sweet-pulut-hitam.png
+47. FILE: sweet-pulut-hitam.jpg
    Pulut hitam — black glutinous rice porridge topped with a swirl of coconut cream, in a bowl.
 
-48. FILE: sweet-cheng-tng.png
+48. FILE: sweet-cheng-tng.jpg
    Cheng tng — a clear sweet dessert soup with longan, barley and white fungus, in a bowl.
 
 --- Ah Seng Tze Char ---
 
-49. FILE: tzechar-chilli-crab.png
+49. FILE: tzechar-chilli-crab.jpg
    Singapore chilli crab — a whole mud crab coated in glossy red-orange sweet-and-spicy tomato-chilli gravy with egg ribbons and spring onion, with golden fried mantou buns on the side, on a white plate.
 
-50. FILE: tzechar-black-pepper-crab.png
+50. FILE: tzechar-black-pepper-crab.jpg
    Singapore black pepper crab — a whole crab coated in a dark, dry, glossy black pepper sauce with visible cracked pepper and curry leaves, on a plate.
 
-51. FILE: tzechar-cereal-butter-prawns.png
+51. FILE: tzechar-cereal-butter-prawns.jpg
    Cereal butter prawns — fried prawns tossed in golden buttery cereal crumbs with fried curry leaves and sliced red chilli, piled on a plate.
 
-52. FILE: tzechar-sambal-kangkong.png
+52. FILE: tzechar-sambal-kangkong.jpg
    Sambal kangkong — stir-fried water spinach in glossy red sambal chilli sauce, wok-fried, on a plate.
 
-53. FILE: tzechar-salted-egg-yolk-chicken.png
+53. FILE: tzechar-salted-egg-yolk-chicken.jpg
    Salted egg yolk chicken — crispy chicken pieces coated in creamy golden salted-egg-yolk sauce with curry leaves and sliced chilli, on a plate.
 
 --- Heng Kee Noodle & Soup ---
 
-54. FILE: noodle-bak-chor-mee.png
+54. FILE: noodle-bak-chor-mee.jpg
    Bak chor mee — dry springy egg noodles topped with minced pork, sliced pork, pork liver, fried lard bits and red chilli sauce, a small bowl of soup beside it.
 
-55. FILE: noodle-fishball-mee-pok-ta.png
+55. FILE: noodle-fishball-mee-pok-ta.jpg
    Fishball mee pok — dry flat egg noodles with white bouncy fishballs, minced pork and red chilli sauce, garnished with chopped spring onion.
 
-56. FILE: noodle-lor-mee.png
+56. FILE: noodle-lor-mee.jpg
    Lor mee — thick yellow noodles in a thick glossy dark-brown starchy gravy, topped with sliced fishcake, braised egg and ngoh hiang, with red chilli and minced garlic.
 
-57. FILE: noodle-bak-kut-teh.png
+57. FILE: noodle-bak-kut-teh.jpg
    Bak kut teh — clear peppery pork-rib soup in a bowl with meaty pork ribs, a side of youtiao dough fritters and white rice, dark soy sauce with sliced chilli.
 
-58. FILE: noodle-sliced-fish-bee-hoon-soup.png
+58. FILE: noodle-sliced-fish-bee-hoon-soup.jpg
    Sliced fish bee hoon soup — milky white fish broth with slices of fish, thin rice vermicelli, tomato and spring onion in a bowl.
 
 --- Rahim's Nasi Padang & Mee ---
 
-59. FILE: nasi-ayam-penyet.png
+59. FILE: nasi-ayam-penyet.jpg
    Ayam penyet — smashed crispy fried chicken on white rice with a mound of red sambal, fried tofu and tempeh, and cucumber slices, on a plate.
 
-60. FILE: nasi-mutton-briyani.png
+60. FILE: nasi-mutton-briyani.jpg
    Mutton briyani — fragrant yellow-orange basmati rice with spiced mutton pieces, a side of achar pickle and curry, on a plate.
 
-61. FILE: nasi-mee-rebus.png
+61. FILE: nasi-mee-rebus.jpg
    Mee rebus — yellow noodles in a thick sweet-savoury brown potato gravy, topped with sliced boiled egg, green chilli, fried tofu, bean sprouts and a lime wedge.
 
-62. FILE: nasi-mee-siam.png
+62. FILE: nasi-mee-siam.jpg
    Mee siam — thin rice vermicelli in a tangy orange spicy-sour gravy, topped with sliced boiled egg, fried tofu, chives and lime.
 
-63. FILE: nasi-roti-john.png
+63. FILE: nasi-roti-john.jpg
    Roti john — halved French baguette topped with a minced-mutton omelette, griddled golden, drizzled with chilli sauce and mayo.
