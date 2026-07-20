@@ -154,23 +154,23 @@ Generate a 500×500 PNG, name it **exactly** as shown, upload to the repo, tell 
 
 ## 🧋 Boba Universe  (0 needed)
 
-- ✅ **Classic Pearl Milk Tea** — `boba-classic.png`
+- ✅ **Classic Pearl Milk Tea** — `boba-classic.jpg`
   > The one that started it all. Chewy pearls, silky tea.
-- ✅ **Brown Sugar Boba Fresh Milk** — `boba-brownsugar.png`
+- ✅ **Brown Sugar Boba Fresh Milk** — `boba-brownsugar.jpg`
   > Tiger stripes down the cup. Zero tea, all drama.
-- ✅ **Taro Milk Tea** — `boba-taro.png`
+- ✅ **Taro Milk Tea** — `boba-taro.jpg`
   > Purple, creamy, tastes like a hug.
-- ✅ **Strawberry Milk + Pearls** — `boba-strawberry.png`
+- ✅ **Strawberry Milk + Pearls** — `boba-strawberry.jpg`
   > Pink, photogenic, tastes like recess.
-- ✅ **Cheese Foam Green Tea** — `boba-cheesefoam.png`
+- ✅ **Cheese Foam Green Tea** — `boba-cheesefoam.jpg`
   > Salty cloud on top. Confusing. Delicious. Confusing.
-- ✅ **Mango Green Tea + Pearls** — `boba-mango.png`
+- ✅ **Mango Green Tea + Pearls** — `boba-mango.jpg`
   > Real mango vibes, questionable mango content.
-- ✅ **Passionfruit Yakult Sparkle** — `boba-yakult.png`
+- ✅ **Passionfruit Yakult Sparkle** — `boba-yakult.jpg`
   > Fizzy, tangy, probably a mistake before bedtime.
-- ✅ **Winter Melon Tea** — `boba-wintermelon.png`
+- ✅ **Winter Melon Tea** — `boba-wintermelon.jpg`
   > The quiet elder statesman of the menu. Smooth, caramel-y.
-- ✅ **Lychee Burst Tea** — `boba-lychee.png`
+- ✅ **Lychee Burst Tea** — `boba-lychee.jpg`
   > Popping pearls that explode lychee. Tiny fireworks.
 
 ---
