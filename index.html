@@ -544,7 +544,7 @@
       shortName: "Boba Universe",
       icon: "🧋",
       meta: "⭐ 4.6 (3,410 ratings) · <b>10–20 min</b> · Pearls finally ready",
-      hero: null, heroEmoji: "🧋",
+      heroPic: "boba-hero.png", heroEmoji: "🧋",
       kitchen: [
         "Shaking your tea vigorously…",
         "Pearls achieving perfect chewiness…",
@@ -554,25 +554,25 @@
       sections: [
         { title: "Milk Teas", items: [
           { name: "Classic Pearl Milk Tea", desc: "The one that started it all. Chewy pearls, silky tea.",
-            price: 4.50, sold: "2.9k cups this week", emoji: "🧋", opts: SUGAR, extras: [["No extras", 0], ["Extra pearls", 0.70], ["Extra everything", 1.50]] },
+            price: 4.50, sold: "2.9k cups this week", pic: "boba-classic.png", opts: SUGAR, extras: [["No extras", 0], ["Extra pearls", 0.70], ["Extra everything", 1.50]] },
           { name: "Brown Sugar Boba Fresh Milk", desc: "Tiger stripes down the cup. Zero tea, all drama.",
-            price: 5.20, sold: "2.1k cups this week", emoji: "🐯", opts: SUGAR, extras: [["No extras", 0], ["Extra pearls", 0.70]] },
+            price: 5.20, sold: "2.1k cups this week", pic: "boba-brownsugar.png", opts: SUGAR, extras: [["No extras", 0], ["Extra pearls", 0.70]] },
           { name: "Taro Milk Tea", desc: "Purple, creamy, tastes like a hug.",
-            price: 5.00, sold: "1.4k cups this week", emoji: "💜", opts: SUGAR, extras: [["No extras", 0], ["Extra pearls", 0.70]] },
+            price: 5.00, sold: "1.4k cups this week", pic: "boba-taro.png", opts: SUGAR, extras: [["No extras", 0], ["Extra pearls", 0.70]] },
           { name: "Strawberry Milk + Pearls", desc: "Pink, photogenic, tastes like recess.",
-            price: 5.30, sold: "760 cups this week", emoji: "🍓", opts: SUGAR, extras: [["No extras", 0], ["Extra pearls", 0.70]] },
+            price: 5.30, sold: "760 cups this week", pic: "boba-strawberry.png", opts: SUGAR, extras: [["No extras", 0], ["Extra pearls", 0.70]] },
           { name: "Cheese Foam Green Tea", desc: "Salty cloud on top. Confusing. Delicious. Confusing.",
-            price: 5.80, sold: "540 cups this week", emoji: "🧀", opts: SUGAR, extras: [["No extras", 0], ["Extra foam", 0.80]] }
+            price: 5.80, sold: "540 cups this week", pic: "boba-cheesefoam.png", opts: SUGAR, extras: [["No extras", 0], ["Extra foam", 0.80]] }
         ]},
         { title: "Fruit Teas", items: [
           { name: "Mango Green Tea + Pearls", desc: "Real mango vibes, questionable mango content.",
-            price: 4.80, sold: "1.2k cups this week", emoji: "🥭", opts: SUGAR, extras: [["No extras", 0], ["Extra pearls", 0.70]] },
+            price: 4.80, sold: "1.2k cups this week", pic: "boba-mango.png", opts: SUGAR, extras: [["No extras", 0], ["Extra pearls", 0.70]] },
           { name: "Passionfruit Yakult Sparkle", desc: "Fizzy, tangy, probably a mistake before bedtime.",
-            price: 5.50, sold: "860 cups this week", emoji: "✨", opts: SUGAR, extras: null },
+            price: 5.50, sold: "860 cups this week", pic: "boba-yakult.png", opts: SUGAR, extras: null },
           { name: "Winter Melon Tea", desc: "The quiet elder statesman of the menu. Smooth, caramel-y.",
-            price: 3.80, sold: "690 cups this week", emoji: "🍈", opts: SUGAR, extras: null },
+            price: 3.80, sold: "690 cups this week", pic: "boba-wintermelon.png", opts: SUGAR, extras: null },
           { name: "Lychee Burst Tea", desc: "Popping pearls that explode lychee. Tiny fireworks.",
-            price: 5.00, sold: "610 cups this week", emoji: "🎆", opts: SUGAR, extras: [["No extras", 0], ["Extra popping pearls", 0.80]] }
+            price: 5.00, sold: "610 cups this week", pic: "boba-lychee.png", opts: SUGAR, extras: [["No extras", 0], ["Extra popping pearls", 0.80]] }
         ]}
       ]
     },
@@ -671,7 +671,10 @@
     document.getElementById('menuName').textContent = shop.name;
     document.getElementById('menuMeta').innerHTML = shop.meta;
     const hero = document.getElementById('menuHero');
-    if (shop.hero) {
+    if (shop.heroPic) {
+      hero.innerHTML = '<img src="' + shop.heroPic + '" alt="">';
+      hero.style.background = '';
+    } else if (shop.hero) {
       hero.innerHTML = '<img src="' + IMG + shop.hero + '?width=960" alt="">';
       hero.style.background = '';
     } else {
@@ -689,7 +692,9 @@
         const key = s + '|' + i;
         const div = document.createElement('div');
         div.className = 'dish';
-        const imgHtml = d.img
+        const imgHtml = d.pic
+          ? '<div class="dish-img"><img src="' + d.pic + '" alt=""></div>'
+          : d.img
           ? '<div class="dish-img"><img src="' + IMG + d.img + '?width=200" alt=""></div>'
           : '<div class="dish-img" style="background:linear-gradient(135deg,#fdf1ff,#e8f4ff);">' + d.emoji + '</div>';
         const optHtml = d.opts
