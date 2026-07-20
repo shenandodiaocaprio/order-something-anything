@@ -226,6 +226,36 @@
     <div>›</div>
   </div>
  
+  <div class="shop" onclick="openShop('tzechar')">
+    <div class="shop-icon">🦀</div>
+    <div class="shop-info">
+      <h2>Ah Seng Tze Char</h2>
+      <p>⭐ 4.8 (2,102) · 25–35 min · Chilli crab · Cereal prawns · Salted egg</p>
+      <div class="open-tag">● Open now · 'Seasonal price' (still free)</div>
+    </div>
+    <div>›</div>
+  </div>
+
+  <div class="shop" onclick="openShop('hengkee')">
+    <div class="shop-icon">🍜</div>
+    <div class="shop-info">
+      <h2>Heng Kee Noodle &amp; Soup</h2>
+      <p>⭐ 4.7 (3,051) · 15–25 min · Bak chor mee · Lor mee · Bak kut teh</p>
+      <div class="open-tag">● Open now · Aunty already knows your order</div>
+    </div>
+    <div>›</div>
+  </div>
+
+  <div class="shop" onclick="openShop('rahim')">
+    <div class="shop-icon">🍛</div>
+    <div class="shop-info">
+      <h2>Rahim's Nasi Padang &amp; Mee</h2>
+      <p>⭐ 4.8 (1,760) · 20–30 min · Ayam penyet · Mee rebus · Briyani</p>
+      <div class="open-tag">● Open now · Sambal pounded by hand, out of spite</div>
+    </div>
+    <div>›</div>
+  </div>
+
   <div class="shop closed">
     <div class="shop-icon">🍜</div>
     <div class="shop-info">
@@ -655,6 +685,108 @@
             price: 2.50, sold: "530 sold this week", emoji: "🥣", opts: null, extras: null }
         ]}
       ]
+    },
+    tzechar: {
+      name: "Ah Seng Tze Char",
+      shortName: "Ah Seng Tze Char",
+      icon: "🦀",
+      meta: "⭐ 4.8 (2,102 ratings) · <b>25–35 min</b> · 'Seasonal price' (still free)",
+      hero: null, heroEmoji: "🦀",
+      kitchen: [
+        "Firing the wok to illegal temperatures…",
+        "Cracking crab with zero mercy…",
+        "Tabulating 'seasonal price'… carry the zero… S$0.00…"
+      ],
+      rideLine: "Keeping the crab gravy from staging a breakout…",
+      sections: [
+        { title: "Seafood", items: [
+          { name: "Chilli Crab", desc: "Whole crab in sweet-savoury tomato-chilli gravy, egg ribbons. 'Seasonal price' — which here means free, like your feelings.",
+            price: 38.00, sold: "410 sold this week", pic: "tzechar-chilli-crab.png", emoji: "🦀", opts: CHILLI,
+            extras: [["No extras", 0], ["Add fried mantou (4)", 2.00], ["Add rice bowl", 0.80]] },
+          { name: "Black Pepper Crab", desc: "Peppery, dry, guaranteed mid-bite sneeze. Cutlery is a suggestion; use hands and accept your fate.",
+            price: 40.00, sold: "360 sold this week", pic: "tzechar-black-pepper-crab.png", emoji: "🦀", opts: null,
+            extras: [["No extras", 0], ["Extra pepper (brave)", 0], ["Add rice bowl", 0.80]] },
+          { name: "Cereal Butter Prawns", desc: "You will eat the loose cereal bits off the plate. We won't judge — the plate isn't real anyway.",
+            price: 18.00, sold: "720 sold this week", pic: "tzechar-cereal-butter-prawns.png", emoji: "🍤", opts: null,
+            extras: [["No extras", 0], ["Extra cereal bits", 1.00]] }
+        ]},
+        { title: "Wok Classics", items: [
+          { name: "Sambal Kangkong", desc: "The obligatory greens, so you can tell your mother you ate vegetables.",
+            price: 8.00, sold: "1.1k sold this week", pic: "tzechar-sambal-kangkong.png", emoji: "🥬", opts: CHILLI,
+            extras: null },
+          { name: "Salted Egg Yolk Chicken", desc: "Salted egg on everything, because it's still 2016 somewhere in the heartlands.",
+            price: 14.00, sold: "980 sold this week", pic: "tzechar-salted-egg-yolk-chicken.png", emoji: "🍗", opts: null,
+            extras: [["No extras", 0], ["Extra curry leaves (free!)", 0], ["Add rice bowl", 0.80]] }
+        ]}
+      ]
+    },
+    hengkee: {
+      name: "Heng Kee Noodle & Soup",
+      shortName: "Heng Kee",
+      icon: "🍜",
+      meta: "⭐ 4.7 (3,051 ratings) · <b>15–25 min</b> · Aunty already knows your order",
+      hero: null, heroEmoji: "🍜",
+      kitchen: [
+        "Blanching noodles in the eternal cauldron…",
+        "Assembling with practised violence…",
+        "Chilli and vinegar tossed by feel, never by measure…"
+      ],
+      rideLine: "Keeping the soup and the dry side from reuniting…",
+      sections: [
+        { title: "Noodles", items: [
+          { name: "Bak Chor Mee", desc: "Michelin-approved (by us, just now). Mee pok, minced pork, liver, that vinegar kick.",
+            price: 5.00, sold: "1.9k sold this week", pic: "noodle-bak-chor-mee.png", emoji: "🍜", opts: CHILLI,
+            extras: EXTRA_NOODLE },
+          { name: "Fishball Mee Pok Ta", desc: "'Ta' means dry. Order it with soup instead and aunty will remember your face forever.",
+            price: 4.50, sold: "1.6k sold this week", pic: "noodle-fishball-mee-pok-ta.png", emoji: "🍥", opts: CHILLI,
+            extras: EXTRA_NOODLE },
+          { name: "Lor Mee", desc: "Gravy so starchy it holds a grudge. Egg, ngoh hiang, extra garlic, extra regret.",
+            price: 4.50, sold: "870 sold this week", pic: "noodle-lor-mee.png", emoji: "🍲", opts: CHILLI,
+            extras: EXTRA_NOODLE }
+        ]},
+        { title: "Soups", items: [
+          { name: "Bak Kut Teh", desc: "Peppery pork-rib soup, bottomless refills — the only thing more bottomless than the bill (S$0).",
+            price: 8.50, sold: "1.2k sold this week", pic: "noodle-bak-kut-teh.png", emoji: "🥣", opts: null,
+            extras: [["No extras", 0], ["Extra dough fritters", 1.00], ["Refill soup (free!)", 0], ["Add rice", 0.80]] },
+          { name: "Sliced Fish Bee Hoon Soup", desc: "Milky broth, fresh fish. The evaporated-milk swirl is non-negotiable and slightly emotional.",
+            price: 6.00, sold: "790 sold this week", pic: "noodle-sliced-fish-bee-hoon-soup.png", emoji: "🐟", opts: null,
+            extras: [["No extras", 0], ["Add milk swirl", 0.50], ["Extra fish", 2.50]] }
+        ]}
+      ]
+    },
+    rahim: {
+      name: "Rahim's Nasi Padang & Mee",
+      shortName: "Rahim's",
+      icon: "🍛",
+      meta: "⭐ 4.8 (1,760 ratings) · <b>20–30 min</b> · Sambal pounded by hand, out of spite",
+      hero: null, heroEmoji: "🍛",
+      kitchen: [
+        "Pounding the sambal by hand, out of principle…",
+        "Ladling thick gravy over absolutely everything…",
+        "One final calamansi squeeze, purely for drama…"
+      ],
+      rideLine: "Guarding the sambal with his life…",
+      sections: [
+        { title: "Rice", items: [
+          { name: "Ayam Penyet", desc: "Chicken smashed flat by someone's very real anger. Sambal that files a police report.",
+            price: 6.50, sold: "1.3k sold this week", pic: "nasi-ayam-penyet.png", emoji: "🍗", opts: CHILLI,
+            extras: EXTRA_RICE },
+          { name: "Mutton Briyani", desc: "Fragrant basmati, spiced mutton. The achar is free; then again, so is everything.",
+            price: 8.00, sold: "940 sold this week", pic: "nasi-mutton-briyani.png", emoji: "🍛", opts: CHILLI,
+            extras: [["No extras", 0], ["Extra mutton", 3.00], ["Extra achar (free!)", 0]] }
+        ]},
+        { title: "Noodles", items: [
+          { name: "Mee Rebus", desc: "Yellow noodles under a sweet-potato gravy blanket. Comfort food that pays no taxes.",
+            price: 4.50, sold: "1.0k sold this week", pic: "nasi-mee-rebus.png", emoji: "🍜", opts: CHILLI,
+            extras: null },
+          { name: "Mee Siam", desc: "Tangy, spicy, faintly sweet — like your last group-chat argument.",
+            price: 4.50, sold: "880 sold this week", pic: "nasi-mee-siam.png", emoji: "🍜", opts: CHILLI,
+            extras: null },
+          { name: "Roti John", desc: "Omelette-and-mutton baguette drowned in chilli. 'John' remains unidentified; we stopped asking.",
+            price: 5.50, sold: "760 sold this week", pic: "nasi-roti-john.png", emoji: "🥖", opts: CHILLI,
+            extras: null }
+        ]}
+      ]
     }
   };
 
@@ -693,7 +825,7 @@
         const div = document.createElement('div');
         div.className = 'dish';
         const imgHtml = d.pic
-          ? '<div class="dish-img"><img src="' + d.pic + '" alt=""></div>'
+          ? '<div class="dish-img"><img src="' + d.pic + '" alt="" onerror="imgFallback(this,\'' + (d.emoji || '🍽️') + '\')"></div>'
           : d.img
           ? '<div class="dish-img"><img src="' + IMG + d.img + '?width=200" alt=""></div>'
           : '<div class="dish-img" style="background:linear-gradient(135deg,#fdf1ff,#e8f4ff);">' + d.emoji + '</div>';
@@ -724,6 +856,13 @@
   function getItem(key) {
     const [s, i] = key.split('|').map(Number);
     return shops[currentShopId].sections[s].items[i];
+  }
+
+  // If a local dish photo hasn't been added yet, gracefully show the emoji tile.
+  function imgFallback(img, emoji) {
+    const tile = img.parentNode;
+    tile.textContent = emoji;
+    tile.style.background = 'linear-gradient(135deg,#fdf1ff,#e8f4ff)';
   }
 
   function currentOpt(key) {
