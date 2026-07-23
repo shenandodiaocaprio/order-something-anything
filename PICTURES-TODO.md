@@ -131,25 +131,25 @@ Generate a 500×500 PNG, name it **exactly** as shown, upload to the repo, tell 
 
 ## 🍔 KopeBurger  (10 needed)
 
-- ⬜ **The Spicy One** — `burger-the-spicy-one.jpg`
+- ✅ **The Spicy One** — `burger-the-spicy-one.jpg`
   > Crispy chicken thigh, mayo, lethal heat. Leaves you changed.
-- ⬜ **Double Cheese KopeBurger** — `burger-double-cheese-kopeburger.jpg`
+- ✅ **Double Cheese KopeBurger** — `burger-double-cheese-kopeburger.jpg`
   > Two patties, two cheese, one regret-free decision.
-- ⬜ **Fish Burger** — `burger-fish-burger.jpg`
+- ✅ **Fish Burger** — `burger-fish-burger.jpg`
   > Square fish, round bun. Geometry is a construct.
-- ⬜ **Plant Patty Burger** — `burger-plant-patty-burger.jpg`
+- ✅ **Plant Patty Burger** — `burger-plant-patty-burger.jpg`
   > For when you want fast food but also moral high ground.
-- ⬜ **Fries** — `burger-fries.jpg`
+- ✅ **Fries** — `burger-fries.jpg`
   > Golden, salted, engineered to be eaten before you reach home.
-- ⬜ **Nuggets (8 pcs)** — `burger-nuggets.jpg`
+- ✅ **Nuggets (8 pcs)** — `burger-nuggets.jpg`
   > Comes with curry sauce. The curry sauce is the point.
-- ⬜ **Hash Brown** — `burger-hash-brown.jpg`
+- ✅ **Hash Brown** — `burger-hash-brown.jpg`
   > Breakfast item available at all hours. We don't ask questions.
-- ⬜ **Sundae** — `burger-sundae.jpg`
+- ✅ **Sundae** — `burger-sundae.jpg`
   > The machine works today. We are as surprised as you.
-- ⬜ **Apple Pie** — `burger-apple-pie.jpg`
+- ✅ **Apple Pie** — `burger-apple-pie.jpg`
   > Molten core. Wait 5 minutes or suffer. Everyone suffers.
-- ⬜ **Milo Shake** — `burger-milo-shake.jpg`
+- ✅ **Milo Shake** — `burger-milo-shake.jpg`
   > The localisation nobody asked for and everybody wanted.
 
 ## 🧋 Boba Universe  (0 needed)
