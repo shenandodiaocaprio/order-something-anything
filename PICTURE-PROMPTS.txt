@@ -26,7 +26,7 @@ SAVE each file using the EXACT filename shown before each prompt.
    A portion of golden crispy french fries.
 
 6. FILE: burger-nuggets.jpg
-   Nine golden chicken nuggets with a small cup of curry dipping sauce.
+   Eight golden chicken nuggets with a small cup of curry dipping sauce.
 
 7. FILE: burger-hash-brown.jpg
    A single golden crispy oval hash brown patty.

@@ -141,7 +141,7 @@ Generate a 500×500 PNG, name it **exactly** as shown, upload to the repo, tell 
   > For when you want fast food but also moral high ground.
 - ⬜ **Fries** — `burger-fries.jpg`
   > Golden, salted, engineered to be eaten before you reach home.
-- ⬜ **Nuggets (9 pcs)** — `burger-nuggets.jpg`
+- ⬜ **Nuggets (8 pcs)** — `burger-nuggets.jpg`
   > Comes with curry sauce. The curry sauce is the point.
 - ⬜ **Hash Brown** — `burger-hash-brown.jpg`
   > Breakfast item available at all hours. We don't ask questions.
